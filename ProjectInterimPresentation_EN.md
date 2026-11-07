@@ -26,13 +26,13 @@ The notes below cover items **1, 4, 5, 6, 7, 8, 9** (7 items). Item 8 is include
 
 **What already exists:**
 
-- Problem definition, background and context: `ICT_Project/Rozdziały/introduction.tex`.
-- Possible solutions: three EMR variants with a comparison table and a selection: `ICT_Project/Rozdziały/project-idea.tex:22-269`.
+- Problem definition, background and context: `ICT_Project/Chapters/introduction.tex`.
+- Possible solutions: three EMR variants with a comparison table and a selection: `ICT_Project/Chapters/project-idea.tex:22-269`.
 - Industry and EU regulatory context (Digital Decade 2030, eHealth, GDPR).
 
 **Gaps:**
 
-1. **Benchmarking of existing solutions is cost-only.** `ICT_Project/Rozdziały/kosztorys.tex:109-153` compares Oracle Cerner and Epic solely by cost per bed. There is no feature comparison with real systems (e.g., Comarch, Asseco, Dedalus, Epic, Oracle Cerner).
+1. **Benchmarking of existing solutions is cost-only.** `ICT_Project/Chapters/cost-estimate.tex:109-153` compares Oracle Cerner and Epic solely by cost per bed. There is no feature comparison with real systems (e.g., Comarch, Asseco, Dedalus, Epic, Oracle Cerner).
 2. **No Business Model Canvas (BMC).** The project contains no BMC in any form. The file `TR_artifacts/Project Proposal Sample/Project_Proposal_PWr_filled.md` is a working content mapping, not a delivered artifact.
 3. **Context analysis is uneven.** The industry and hospital process are well described, but the market (size, trends, competition, public funding) and the organization itself (structure, IT budget, digital maturity) are weak.
 4. **Variant selection lacks a weighted scoring matrix.** The assessment is qualitative (yes/partial/none), which weakens the "possible solution options" part.
@@ -64,14 +64,14 @@ The notes below cover items **1, 4, 5, 6, 7, 8, 9** (7 items). Item 8 is include
 **What already exists:**
 
 - Team composition and student numbers: `ICT_Project/main.tex:11-13`.
-- Division of work by report chapter: `ICT_Project/Rozdziały/work_table.tex:31-94`.
+- Division of work by report chapter: `ICT_Project/Chapters/work_table.tex:31-94`.
 
 **Gaps:**
 
 1. **No project positions.** There is no assignment such as: project manager, deputy, business analyst, architect, backend/frontend/mobile, QA, UX/UI, security and compliance, financial controller, communication/presentation.
 2. **No qualifications.** Education, technical skills, experience, certifications, tool and language proficiency are not described.
 3. **No justification for team selection.** It is not explained why this team can deliver the project and what competency gaps it has.
-4. **Confusing roles from the cost estimate.** `ICT_Project/Rozdziały/kosztorys.tex:301-322` lists roles such as "Project Manager", "Architect", "DevOps", etc., but these are roles of a fictional vendor in the estimate, not roles of the student team members. Without separating these layers, the presentation is unclear.
+4. **Confusing roles from the cost estimate.** `ICT_Project/Chapters/cost-estimate.tex:301-322` lists roles such as "Project Manager", "Architect", "DevOps", etc., but these are roles of a fictional vendor in the estimate, not roles of the student team members. Without separating these layers, the presentation is unclear.
 5. **No availability information.** Neither the workload dimension (FTE) nor individual availability is given.
 
 **What to add:**
@@ -92,7 +92,7 @@ The notes below cover items **1, 4, 5, 6, 7, 8, 9** (7 items). Item 8 is include
 **What already exists (but is not a WBS):**
 
 - `work_table.tex` — division of work by report chapter.
-- Milestones M0–M6 in `kosztorys.tex:641-668` — a list of payment milestones, not a work breakdown structure.
+- Milestones M0–M6 in `cost-estimate.tex:641-668` — a list of payment milestones, not a work breakdown structure.
 
 **Gaps:**
 
@@ -162,8 +162,8 @@ The notes below cover items **1, 4, 5, 6, 7, 8, 9** (7 items). Item 8 is include
 
 **What already exists:**
 
-- Phased deployment concept: `ICT_Project/Rozdziały/implementation.tex:10-18`.
-- Payment milestones M0–M6: `ICT_Project/Rozdziały/kosztorys.tex:641-668`.
+- Phased deployment concept: `ICT_Project/Chapters/implementation.tex:10-18`.
+- Payment milestones M0–M6: `ICT_Project/Chapters/cost-estimate.tex:641-668`.
 
 **Gaps:**
 
@@ -219,7 +219,7 @@ The notes below cover items **1, 4, 5, 6, 7, 8, 9** (7 items). Item 8 is include
 
 **What already exists:**
 
-- Detailed cost estimate: CAPEX, OPEX, 5-year TCO, reserves, scenarios, contract price, payment schedule, funding sources: `ICT_Project/Rozdziały/kosztorys.tex`.
+- Detailed cost estimate: CAPEX, OPEX, 5-year TCO, reserves, scenarios, contract price, payment schedule, funding sources: `ICT_Project/Chapters/cost-estimate.tex`.
 - Unit metrics (cost per bed, cost per staff account).
 
 **Gaps:**
@@ -250,7 +250,7 @@ The notes below cover items **1, 4, 5, 6, 7, 8, 9** (7 items). Item 8 is include
 
 **What already exists:**
 
-- Investment and operating costs: CAPEX PLN 27.27 million net, contract price PLN 34.75 million, OPEX PLN 6.54 million/year, 5-year TCO approx. PLN 67.5 million, adoption costs approx. PLN 5.5 million: `ICT_Project/Rozdziały/kosztorys.tex`.
+- Investment and operating costs: CAPEX PLN 27.27 million net, contract price PLN 34.75 million, OPEX PLN 6.54 million/year, 5-year TCO approx. PLN 67.5 million, adoption costs approx. PLN 5.5 million: `ICT_Project/Chapters/cost-estimate.tex`.
 
 **Gaps:**
 
