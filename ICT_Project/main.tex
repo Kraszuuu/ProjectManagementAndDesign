@@ -1,0 +1,55 @@
+% !TEX encoding = UTF-8 Unicode
+% !TeX TXS-program:compile = txs:///pdflatex/[--shell-escape] 
+
+\documentclass[12pt, twoside]{book}
+\input{latex-settings.tex}
+
+\frontmatter
+
+\title{\textbf{Projektowanie bezpiecznej architektury ICT - Projekt}}
+\author{
+Pola Polańska 276087, Piotr Bonar 272720, Kacper Kurp 268555,\\
+Wiktor Szajerka 272432, Roch Szewczyk 263828, Robert Rubaszek 272372
+}
+\date{Czerwiec 2026}
+
+% Ten plik jest wyłącznie do podpinania kolejnych rozdziałów
+\begin{document}
+\raggedbottom
+\maketitle
+\doublepage
+
+% Add table of contents
+\pagestyle{tableOfContentStyle}
+\tableofcontents 
+
+\pagestyle{custom}
+\mainmatter
+ 
+% Create chapters:
+\input{Rozdziały/introduction}
+\input{Rozdziały/empatyzacja}
+\input{Rozdziały/user_story}
+\input{Rozdziały/project-idea}
+\input{Rozdziały/implementation}
+\input{Rozdziały/kosztorys}
+\input{Rozdziały/functionalities}
+% Redefine plain for 1st bibliography page style
+\resetformatting
+
+\pagestyle{bibliographyStyle}
+\bibliographystyle{abbrv}
+\bibliography{bibliography}
+
+% Add list of figures and tables
+\pagestyle{custom}
+\newpage
+\pagestyle{ListofFiguresStyle}
+\listoffigures
+\newpage
+\pagestyle{ListofTablesStyle}
+\listoftables
+
+\input{Rozdziały/work_table}
+
+\end{document}

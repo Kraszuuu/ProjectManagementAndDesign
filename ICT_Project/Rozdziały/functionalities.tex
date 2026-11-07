@@ -1,0 +1,112 @@
+\Chapter{Opis funkcjonalności systemu}
+\label{chapter:functionalities}
+
+\section{Wprowadzenie}
+W tej części skupieni jesteśmy na opisie wymagań funkcjonalnych (odpowiedź na pytania "co?"), a nie wymagań niefunkcjonalnych (odpowiedź na pytania "jak?") opisywanych z perspektywy użytkownika. Oznacza to, że interesuje nas relacja pomiędzy danymi wejściowymi, stanem systemu i danymi wyjściowymi, a nie, chociażby, prędkość wykonania procesu.
+
+\subsection{Rejestracja i logowanie}
+Każdy z użytkowników, aby uzyskać dostęp do serwisu, musi zalogować się na swoje konto. Konta personelu placówki są tworzone i aktualizowane przez Administratora systemu, będącego pracownikiem dostawcy systemu, zapewniającego wsparcie działania programu, będące poza zakresem dokumentu. Konta Pacjentów są tworzone i aktualizowane przez Personel administracyjny za pomocą formularzy. Logowanie do serwisu jest logowaniem dwustopniowym: wymaga podania loginu i hasła, a także wykorzystywanego w placówce sposobu weryfikacji pracownika, takiego jak karta magnetyczna (dla Personelu) lub kodu weryfikacyjnego wysyłanego przez SMS lub aplikację mObywatel (dla Pacjentów). Po uzupełnieniu wymaganych pól i kliknięciu w przycisk "Zaloguj", widocznego z poziomu panelu logowania, system przekieruje użytkownika do Panelu głównego.
+
+\subsection{Panele i nawigacja}
+Widokiem każdego użytkownika po zalogowaniu jest panel główny. Nawigacja odbywa się przez interakcje z przyciskami paska nawigacji, przyciskiem głównym oraz niektórymi przyciskami panelu.
+Zawartość przycisków panelu różni się zależnie od panelu. Powstaną panele:\begin{itemize}
+    \item logowania
+    \item wyszukiwania (tylko Personel)
+    \item główny
+    \item historii zabiegów
+    \item informacji o zabiegu
+    \item danych osobowych
+    \item formularzy
+\end{itemize}
+Zawartość paska nawigacji jest jednakowa dla wszystkich paneli użytkownika i nawiguje do odpowiadających paneli:\begin{itemize}
+    \item Dane osobowe
+    \item Zabiegi
+    \item Formularze
+    \item Wyszukiwanie (tylko Personel)
+\end{itemize}
+Przycisk główny nawiguje do panelu głównego
+
+\subsection{Formularze i powiadomienia}
+Sposób przekazywania dokumentacji, w tym dokumentacji medycznej, oparty jest na formularzach wyświetlanych, tworzonych, modyfikowanych i przesyłanych pomiędzy użytkownikami. Skierowania na zabiegi, recepty, modyfikacje danych, wszystko to przekazywane jest za pomocą formularzy. Interakcje te odbywają się w panelu formularzy, przy pomocy dostępnych tam interakcji, zależnych od roli. Operacje CRUD na formularzach odbywają się przy pomocy odpowiadających przycisków dostępnych przy nazwie formularza. Dostępna jest lista formularzy do pobrania i uzupełnienia. Każda zmiana w formularzu musi być zatwierdzona przez Personel administracyjny. Zmiany w formularzach zostają zakomunikowane użytkownikowi za pomocą ikony powiadomień dostępnej z poziomu panelu głównego.
+
+\section{Aktorzy, ich akcje oraz uprawnienia}
+Projekt zakłada podział funkcjonalności aplikacji ze względu na 3 role: Pacjent, Personel medyczny oraz Personel administracyjny. Role różnią się zakresem dostępu do informacji oraz stopniem interakcji ze środowiskiem
+\subsection{Pacjent}
+\subsubsection{Uprawnienia}
+Pacjent ma uprawnienia \textbf{wyłącznie} do odczytu danych i przesyłania formularzy. Pacjent ma dostęp \textbf{wyłącznie} do informacji o sobie samym. W ich skład wchodzą uprawnienia do:\begin{itemize}
+    \item Wyświetlenia podsumowania (powiadomienia, najbliższy zabieg, ostatni zabieg, recepty) z poziomu panelu głównego
+    \item Wyświetlania danych osobowych użytkownika z poziomu panelu danych osobowych
+    \item Wyświetlenia historii zabiegów, zarówno przeszłych jak i przyszłych z poziomu panelu historii zabiegów
+    \item Wyświetlenia informacji o zabiegu z poziomu panelu informacji o zabiegu
+    \item Wyświetlania i przesyłania formularzy z poziomu panelu formularzy
+    \item Wyświetlania listy dostępnych formularzy z poziomu panelu formularzy
+\end{itemize}
+\subsubsection{Akcje i nawigacja}
+\begin{itemize}
+    % \item Po kliknięciu w przycisk "Dane osobowe", dostępnegoz paska nawigacji, system przekieruje użytkownika do panelu danych osobowych
+    % \item Po kliknięciu w przycisk "Wszystkie zabiegi", dostępny po rozwinięciu menu bocznego z poziomu panelu głównego, system przekieruje użytkownika do panelu historii zabiegów
+    \item Po kliknięciu w nazwę zabiegu z poziomu panelu głównego, system przekieruje użytkownika do panelu informacji o zabiegu
+    \item Po kliknięciu w aktywną receptę system otworzy aplikację systemową urządzenia użytkownika do odczytu danego typu pliku 
+    \item Po kliknięciu w nazwę zabiegu z poziomu panelu historii badań/zabiegów, system przekieruje użytkownika do panelu informacji o zabiegu
+    \item Po przeciągnięciu pliku formularza w pole przesyłania, z poziomu panelu formularzy i następnym zatwierdzeniu przez użytkownika, system przyjmie formularz
+    % \item Po kliknięciu w przycisk "Powrót" z dowolnego panelu, oprócz panelu głównego, system przekieruje użytkownika do wcześniej odwiedzonego panelu.
+    % \item Po kliknięciu w ikonę powiadomienia z poziomu panelu głównego, system rozwinie menu kontekstowe powiadomień.
+    % \item Po kliknięciu w powiadomienie z menu kontekstowego powiadomień, system przekieruje użytkownika od widoku opisanego w powiadomieniu
+\end{itemize}
+\subsection{Personel medyczny}
+Sekcja ta dotyczy szerokiej grupy pracowników szpitala, takich jak: lekarze, pielęgniarki, położne, diagności, laboranci czy pracownicy prosektorium. Pomimo wykonywania różnych zajęć, korzystają oni z tych samych informacji. Z tego powodu zostają oni połączeni w jednego aktora.
+\subsubsection{Uprawnienia}
+Personel medyczny ma uprawnienia do:\begin{itemize}
+    \item Wyświetlania powiadomień i terminarza wizyt z poziomu panelu głównego
+    \item Zmiany dnia wyświetlanego w widgecie kalendarza
+    \item Wyświetlania listy pacjentów z poziomu panelu wyszukiwania
+    \item Wyszukiwania oraz wybierania Pacjentów z poziomu panelu wyszukiwania
+    \item Wyświetlenia swoich danych osobowych z poziomu panelu danych osobowych
+    \item Wyświetlenia danych osobowych Pacjenta z poziomu panelu danych osobowych
+    \item Wyświetlenia historii zabiegów Pacjenta, zarówno przeszłych jak i przyszłych z poziomu panelu historii zabiegów
+    \item Wyświetlenia informacji o zabiegu z poziomu panelu informacji o zabiegu
+    \item Wyświetlania i przesyłania formularzy z poziomu panelu formularzy
+    \item Wyświetlania listy dostępnych formularzy z poziomu panelu formularzy
+    \item Wyświetlenia zaplanowanych zabiegów w kalendarzu z poziomu panelu głównego
+\end{itemize}
+\subsubsection{Akcje i nawigacja}
+\begin{itemize}
+    \item Po kliknięciu w widget kalendarza z poziomu panelu głównego, system otworzy selektor dat, w którym użytkownik może wybrać i zastosować interesujący go dzień. Domyślną datą jest aktualna data.
+    \item Po kliknięciu w wizytę widoczną w kalendarzu z poziomu panelu głównego, system przekieruje użytkownika do panelu informacji o zabiegu
+    \item Po uzupełnieniu pola wyboru "Numer PESEL" z poziomu panelu wyszukiwania, system na szczycie listy wyświetli imię i nazwisko Pacjenta, po kliknięciu w które system oznaczy Pacjenta jako aktywny
+    % \item Po kliknięciu w przycisk "Utwórz zlecenie zabiegu", dostępny po rozwinięciu menu bocznego z poziomu panelu głównego Pacjenta, system przekieruje użytkownika do odpowiedniego formularza. Akcje tą należy traktować, jako skierowanie na badanie/zabieg.
+    \item Po kliknięciu w nazwę zabiegu z poziomu panelu historii zabiegów, system Przekieruje użytkownika do panelu informacji o zabiegu
+    \item Po przeciągnięciu pliku formularza w pole przesyłania, z poziomu panelu formularzy i następnym zatwierdzeniu przez użytkownika, system przyjmie formularz
+    \end{itemize}
+    % \item Po kliknięciu w ikonę powiadomienia z poziomu panelu wyszukiwania, system rozwinie menu kontekstowe powiadomień
+    % \item Po kliknięciu w powiadomienie z menu kontekstowego powiadomień, system przekieruje użytkownika od widoku opisanego w powiadomieniu
+    % \item Po kliknięciu w przycisk "Powrót" z dowolnego panelu, oprócz panelu głównego, system przekieruje użytkownika do wcześniej odwiedzonego panelu.
+
+\subsection{Personel administracyjny}
+\subsubsection{Uprawnienia}
+Personel administracyjny ma uprawnienia do:\begin{itemize}
+    \item Wyświetlenia podsumowania (powiadomienia, wymagane akcje, formularze do zatwierdzenia) z poziomu panelu głównego
+    \item Wyszukania kont Pacjentów z poziomu panelu wyszukiwania
+    \item Wyświetlenia danych osobowych Pacjenta z poziomu panelu danych osobowych
+    \item Wyświetlenia własnych danych osobowych z poziomu panelu danych osobowych
+    \item Wyświetlenia historii zabiegów Pacjenta z poziomu panelu historii zabiegów
+    \item Wyświetlenia informacji o konkretnym zabiegu z poziomu panelu informacji o zabiegu
+    \item Wyświetlania listy dostępnych formularzy z poziomu panelu formularzy
+    \item Tworzenia kont Pacjentów z poziomu panelu formularza
+    \item Modyfikowania danych osobowych Pacjentów z poziomu panelu formularza
+    \item Tworzenia zleceń zabiegu z poziomu panelu formularza
+    \item Tworzenia, odczytywania, akceptowania oraz modyfikowania formularzy wymagających zatwierdzenia z poziomu panelu formularza
+\end{itemize}
+\subsubsection{Akcje i nawigacja}
+\begin{itemize}
+    \item Po kliknięciu w dane Pacjenta z poziomu panelu głównego, system oznaczy Pacjenta jako aktywny
+    \item Po uzupełnieniu pola wyboru "Numer PESEL" z poziomu panelu wyszukiwania, system na szczycie listy wyświetli imię i nazwisko Pacjenta, po kliknięciu w które system oznaczy Pacjenta jako aktywny
+    \item Po kliknięciu w nazwę zabiegu z poziomu panelu historii zabiegów, system Przekieruje użytkownika do panelu informacji o zabiegu
+    \item Po przeciągnięciu pliku formularza w pole przesyłania, z poziomu panelu formularzy i następnym zatwierdzeniu przez użytkownika, system przyjmie formularz
+    % \item Po kliknięciu w przycisk "Modyfikuj dane osobowe Pacjenta", dostępny po rozwinięciu menu bocznego z poziomu panelu głównego Pacjenta, system przekieruje użytkownika do odpowiedniego formularza
+    % \item Po kliknięciu w przycisk "Utwórz zlecenie zabiegu", dostępny po rozwinięciu menu bocznego z poziomu panelu głównego Pacjenta, system przekieruje użytkownika do odpowiedniego formularza
+    % \item Po kliknięciu w przycisk "Modyfikuj dane zabiegu" z poziomu panelu informacji o zabiegu, \textbf{wyłącznie jeśli zabieg nie został zrealizowany}, system przekieruje użytkownika do odpowiedniego formularza. Akcję należy traktować jako realizację skierowania na zabieg, utworzoną wcześniej przez Personel medyczny
+    % \item Po kliknięciu w przycisk "Wszystkie dane konta", dostępny po rozwinięciu menu bocznego z poziomu panelu głównego Pacjenta, system przekieruje użytkownika do panelu danych osobowych
+    % \item Po kliknięciu w przycisk "Powrót" z dowolnego panelu, oprócz panelu głównego, system przekieruje użytkownika do wcześniej odwiedzonego panelu.
+    % \item Po zapisaniu zmian w dowolnym formularzu, system wysyła powiadomienie do Pacjenta i Personelu medycznego
+\end{itemize}

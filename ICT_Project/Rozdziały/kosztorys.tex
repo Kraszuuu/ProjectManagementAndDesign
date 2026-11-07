@@ -1,0 +1,681 @@
+\chapter{Kosztorys wdrożenia systemu EMR}
+\label{chapter:costs}
+
+\section{Wprowadzenie i metodyka}
+
+Niniejszy rozdział przedstawia szczegółowy kosztorys wdrożenia systemu Electronic Medical Record (EMR) w Szpitalu im. Bajgla we Wrocławiu. Kosztorys obejmuje nakłady inwestycyjne (CAPEX), koszty operacyjne (OPEX) oraz całkowity koszt posiadania (TCO) w horyzoncie 5 lat. Wszystkie trzy warianty rozwiązania opisane w rozdziale~\ref{chapter:project-idea} wyceniono na tym samym poziomie szczegółowości, co zapewnia pełną porównywalność, a wycenę szczegółową rozwinięto dla rekomendowanego Wariantu~II, wybranego przez klienta jako wdrażane rozwiązanie.
+
+\subsection{Zastosowane zasady}
+
+\begin{itemize}
+    \item \textbf{Estymacja oddolna (bottom-up)} – każdy koszt wynika z konkretnej pozycji (osobo-miesiąc, sztuka sprzętu, jednostka zasobu chmurowego).
+    \item \textbf{Rozdział CAPEX/OPEX} oraz pełny koszt posiadania (TCO) w horyzoncie 5 lat.
+    \item \textbf{Oddzielenie kosztu wytworzenia od ceny kontraktowej} – jawny narzut realizacyjny oraz marża wykonawcy, prowadzące do ceny kontraktowej.
+    \item \textbf{Scenariusze i analiza wrażliwości} – wartości punktowe uzupełniono o wariant optymistyczny, bazowy i pesymistyczny oraz macierz ryzyk kosztowych.
+    \item \textbf{Benchmarki rynkowe} – stawki pracy i koszty jednostkowe odniesione do publikowanych źródeł.
+\end{itemize}
+
+\subsection{Podstawa cenowa}
+
+Kwoty podano w PLN, w wartościach \textbf{netto} (poziom cen 2026). Stawki pracy w kategorii~A ujęto w kwocie netto na umowie B2B -- VAT od faktur podwykonawców podlega odliczeniu u wykonawcy (por. sekcję~\ref{sec:capex_ii}). VAT 23\% dotyczy wyłącznie \textbf{ceny kontraktowej} płatnej przez szpital (tab.~\ref{tab:komercyjny}). Benchmarki stawek: \cite{Hays_2026, NoFluffJobs_2025}; koszty chmury: \cite{Azure_Pricing_2026}.
+
+\section{Założenia wejściowe}
+
+\subsection{Profil placówki, populacja i dane}
+
+Aby oprzeć kosztorys na realnej skali dużego szpitala klinicznego, założenia oparto na podstawie danych Uniwersyteckiego Szpitala Klinicznego we Wrocławiu z raportu rocznego za rok 2014 \cite{USK_Raport_2014}. Część parametrów (liczba oddziałów, zatrudnienie, liczba przyjęć i porad) pochodzi bezpośrednio z raportu; pozostałe -- nieujęte w raporcie, lecz niezbędne do wymiarowania systemu (liczba łóżek, konta i obciążenie systemu, wolumeny danych) oszacowano. Pochodzenie każdego parametru oznaczono w kolumnie „Źródło”.
+
+\begin{table}[h]
+\centering
+\small
+\renewcommand{\arraystretch}{1.15}
+\begin{tabular}{|L{5.4cm}|L{6.4cm}|L{2.4cm}|}
+\hline
+\rowcolor{gray!20}\textbf{Parametr} & \textbf{Wartość} & \textbf{Źródło} \\
+\hline
+Liczba oddziałów / klinik & 37 oddziałów / 23 kliniki & raport \\
+\hline
+Poradnie / pracownie diagnostyczne & 37 / 31 & raport \\
+\hline
+Zatrudnienie ogółem & 2 897 (w tym 2 170 umów o pracę, 89 kontraktów) & raport \\
+\hline
+Konta personelu w systemie EMR & 2 600 & szacunek \\
+\hline
+Liczba łóżek & 1 150 & szacunek \\
+\hline
+Przyjęcia w szpitalu ogółem rocznie & 116 423 & raport \\
+\hline
+\quad w tym oddziały / SOR / dializy & 58 167 / 34 539 / 23 717 & raport \\
+\hline
+Porady ambulatoryjne rocznie & 110 227 & raport \\
+\hline
+Aktywne konta pacjentów (portal) & 400 000 & szacunek \\
+\hline
+Szczytowa liczba użytkowników jednoczesnych & 700 & szacunek \\
+\hline
+Szczytowe obciążenie API & 1 200 zap./s & szacunek \\
+\hline
+Przyrost danych ustrukturyzowanych / dokumentów rocznie & 300 GB / 2 TB & szacunek \\
+\hline
+Dane obrazowe (PACS/DICOM) rocznie & 50 TB & szacunek \\
+\hline
+Wymagany okres retencji dokumentacji medycznej & 20 lat & wymóg prawny \\
+\hline
+Tryb pracy & 24/7/365 & raport \\
+\hline
+\end{tabular}
+\caption{Założenia wejściowe -- na podstawie USK Wrocław (raport 2014)}
+\label{tab:zalozenia}
+\end{table}
+
+\paragraph{Uwagi do szacunków.} Liczbę łóżek (ok.~1 150) oszacowano z liczby przyjęć na oddziały (58 167) przy średnim czasie hospitalizacji ok.~5,5 dnia i obłożeniu ok.~72\%. Liczbę kont personelu EMR (ok.~2 600) przyjęto jako personel medyczny i administracyjny z dostępu do systemu (z pominięciem wolontariatu i części umów zlecenie). Wolumeny danych oraz obciążenie systemu oszacowano proporcjonalnie do skali aktywności placówki. Dane skali pochodzą z USK Wrocław (raport 2014) jako benchmark dużego szpitala klinicznego; dla mniejszej placówki wymiarowanie należy skorygować proporcjonalnie.
+
+\subsection{Założenia dotyczące floty sprzętu}
+
+Aby przedstawić założenia dotyczące modelu sprzętowego w sposób rzetelny, przyjęto następujące założenia eksploatacyjne, uwzględnione w kosztach inwestycyjnych i operacyjnych:
+
+\begin{itemize}
+    \item \textbf{Bufor sprzętowy} – pula zapasowa na poziomie 12\% liczby urządzeń mobilnych i stanowisk (sprzęt zastępczy na czas serwisu).
+    \item \textbf{Cykl wymiany} – tablety 4 lata, stanowiska komputerowe 5 lat, infrastruktura sieciowa 6--7 lat.
+    \item \textbf{Ubytki i uszkodzenia} – zakładana stopa utraty/uszkodzeń tabletów 5\% rocznie.
+    \item \textbf{Finansowanie odtworzeniowe} – koszty bufora, wymiany i ubytków pokrywane są z rezerwy odtworzeniowej w OPEX (tab.~\ref{tab:opex_suma}) oraz w scenariuszu pesymistycznym kosztorysu.
+\end{itemize}
+
+\section{Benchmarki rynkowe i źródła danych}
+
+W celu uniknięcia stawek „bez źródła” przyjęte założenia kosztowe odniesiono do publikowanych benchmarków rynkowych oraz analiz wdrożeń systemów EMR/EHR w szpitalach o porównywalnej skali.
+
+\begin{table}[h]
+\centering
+\small
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{|p{4.2cm}|p{5.8cm}|p{3.2cm}|}
+\hline
+\rowcolor{gray!20}\textbf{Obszar} & \textbf{Źródło} & \textbf{Zastosowanie} \\
+\hline
+Stawki B2B specjalistów IT & Hays Salary Guide \cite{Hays_2026}, NoFluffJobs \cite{NoFluffJobs_2025} & Kategoria A \\
+\hline
+Cennik chmury (IaaS/PaaS) & Microsoft Azure Pricing \cite{Azure_Pricing_2026} & Kategoria B, OPEX \\
+\hline
+Wymagania integracji krajowej & Centrum e-Zdrowia \cite{CeZ_P1_2025} & Kategoria F \\
+\hline
+Benchmarki wdrożeń EMR/EHR & Software Finder (Oracle Cerner) \cite{SoftwareFinder_Cerner_2026}, The Pricer (Epic EMR) \cite{ThePricer_Epic_2024} & Walidacja CAPEX/TCO \\
+\hline
+\end{tabular}
+\caption{Źródła benchmarków przyjętych w kosztorysie}
+\label{tab:benchmarki}
+\end{table}
+
+Oprócz benchmarków jednostkowych przeprowadzono również walidację całkowitego budżetu projektu względem publicznie opisywanych wdrożeń systemów EMR/EHR realizowanych w szpitalach o porównywalnej skali działalności.
+
+Według zestawienia Software Finder dla systemu Oracle Cerner \cite{SoftwareFinder_Cerner_2026}, koszty wdrożenia w szpitalach posiadających około 500 łóżek wynoszą zazwyczaj od 12 do 30 mln USD, przy rocznych kosztach utrzymania na poziomie 1,5–3 mln USD. Odpowiada to przedziałowi około 48–120 mln PLN (przy kursie 1 USD = 4,0 PLN).
+
+Analizy dotyczące systemu Epic EMR wskazują natomiast, że wdrożenia w dużych organizacjach (zakładając 1000 łóżek) mogą osiągać poziom 50–100 mln USD, co odpowiada około 200–400 mln PLN \cite{ThePricer_Epic_2024}.
+
+\begin{table}[h]
+\centering
+\small
+\renewcommand{\arraystretch}{1.2}
+\setlength{\tabcolsep}{4pt}
+
+\begin{tabular}{|p{2.8cm}|p{2.6cm}|p{1.6cm}|p{2.2cm}|p{2.6cm}|}
+\hline
+\rowcolor{gray!20}
+\textbf{System} & \textbf{Zakres kosztu} & \textbf{Łóżka} & \textbf{Koszt/łóżko} & \textbf{Koszt/łóżko PPP} \\
+\hline
+
+Oracle Cerner &
+48--120 mln PLN &
+500 &
+96--240 tys. PLN &
+57,6--163,2 tys. PLN \\
+\hline
+
+Epic EMR &
+200--400 mln PLN &
+1000 &
+200--400 tys. PLN &
+120--272 tys. PLN \\
+\hline
+
+\end{tabular}
+
+\caption{Benchmarki wdrożeń EMR/EHR w przeliczeniu na łóżko szpitalne (korekta PPP)}
+\label{tab:per_bed_benchmark}
+\end{table}
+
+Przedstawione wartości wskazują, że całkowity koszt wdrożenia systemów klasy EMR/EHR w dużych szpitalach mieści się w szerokim przedziale od kilkudziesięciu do kilkuset milionów złotych, zależnie od skali organizacji, stopnia złożoności procesów klinicznych oraz zakresu integracji z systemami zewnętrznymi. W przeliczeniu na pojedyncze łóżko szpitalne rozpiętość ta wynosi orientacyjnie od około 96 tys. PLN do 400 tys. PLN. Tak duży zakres wynika przede wszystkim z różnic w modelu wdrożeniowym (on-premise vs. cloud), poziomie personalizacji systemu, liczbie modułów klinicznych oraz kosztach zmian organizacyjnych i szkoleń personelu. W praktyce oznacza to, że niższe wartości odpowiadają wdrożeniom o ograniczonym zakresie funkcjonalnym, natomiast górne granice dotyczą kompleksowych transformacji cyfrowych obejmujących całą organizację szpitalną. 
+
+Należy jednocześnie zaznaczyć, że jest to benchmark amerykański, w związku z czym projekt realizowany i wdrażany w Polsce będzie opierał się na niższych stawkach wynagrodzeń specjalistów IT oraz musi być dostosowany do ograniczeń budżetowych publicznej służby zdrowia. W celu przeliczenia benchmarków kosztowych skorygowano je o różnice siły nabywczej między Polską a Stanami Zjednoczonymi przy użyciu współczynnika PPP (Purchasing Power Parity), wyznaczonego na podstawie metodologii International Comparison Program (ICP) Banku Światowego \cite{WorldBank_ICP_Methodology}.
+
+W efekcie do przeliczeń benchmarków kosztowych przyjęto efektywny współczynnik PPP na poziomie 0{,}66, stanowiący wartość środkową wynikającą z przedziału 0{,}60--0{,}68 (ICP World Bank) oraz korekty o specyfikę usług wysokospecjalistycznych w sektorze IT. Wartość ta została zastosowana jako jednolity mnożnik korekcyjny w przeliczeniach kosztów z rynku amerykańskiego na warunki polskie mający charakter korekty kosztowej (cost adjustment factor).
+
+Zastosowanie współczynnika PPP skutkuje przeliczeniem pierwotnego zakresu benchmarku do poziomu 57,6–272 tys. PLN w przeliczeniu na jedno łóżko szpitalne.
+
+\section{Architektura i SLA wariantów}
+
+Warianty różnią się nie tylko zakresem funkcjonalnym, ale przede wszystkim architekturą i wynikającym z niej poziomem dostępności (SLA), co bezpośrednio determinuje koszt.
+
+\begin{table}[h]
+\centering
+\small
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{|L{3.2cm}|L{3.8cm}|L{3.8cm}|L{3.8cm}|}
+\hline
+\rowcolor{gray!20}\textbf{Cecha} & \textbf{Wariant I (MVP)} & \textbf{Wariant II (optymalny)} & \textbf{Wariant III (enterprise)} \\
+\hline
+Architektura & Monolit modularny & Mikrousługi, RHA & Multi-region active-active \\
+\hline
+Region chmury & 1 (Poland Central) & 1 + warm DR (West Europe) & 2 aktywne + warm DR \\
+\hline
+Tryb offline & brak & pełny (sync + konflikty) & pełny + edge \\
+\hline
+SLA dostępności & 99,0\% & 99,9\% & 99,99\% \\
+\hline
+Dopuszczalny przestój/rok & ~3,65 dnia & ~8,8 godz. & ~52 min \\
+\hline
+Integracje zewnętrzne & brak & P1, LIS, PACS & + urządzenia, API, AI \\
+\hline
+Footprint compute (węzły) & ~6 & ~18 (+DR) & ~36 (+DR) \\
+\hline
+\end{tabular}
+\caption{Porównanie architektury i SLA wariantów}
+\label{tab:architektura}
+\end{table}
+
+\section{Wybór dostawcy chmury i model obciążenia}
+
+\subsection{Rekomendacja}
+
+Rekomenduje się \textbf{Microsoft Azure}, region podstawowy \textbf{Poland Central (Warszawa)} oraz region zapasowy DR \textbf{West Europe (Amsterdam)} -- oba w EOG, co zapewnia zgodność z RODO w zakresie rezydencji danych. Azure wybrano ze względu na obecność regionu w Polsce, posiadane certyfikaty oraz łatwość integracji hybrydowej (ExpressRoute).
+
+\begin{table}[h]
+\centering
+\small
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{|L{3.4cm}|C{2.4cm}|C{2.4cm}|C{2.4cm}|C{2.4cm}|}
+\hline
+\rowcolor{gray!20}\textbf{Kryterium} & \textbf{Azure} & \textbf{AWS} & \textbf{Google Cloud} & \textbf{OVHcloud} \\
+\hline
+Region w Polsce & tak & nie & nie & tak \\
+\hline
+Usługi zarządzane & b.~wysoka & b.~wysoka & wysoka & średnia \\
+\hline
+Zgodność sektor publ. & b.~wysoka & wysoka & wysoka & wysoka \\
+\hline
+Koszt względny & średni & średni & średni & niski \\
+\hline
+Rekomendacja & \textbf{wybrany} & alternatywa & alternatywa & rozważany \\
+\hline
+\end{tabular}
+\caption{Porównanie dostawców chmury}
+\label{tab:chmura}
+\end{table}
+
+\subsection{Model obciążenia (load model)}
+
+Obciążenie systemu EMR nie jest stałe: występują szczyty dobowe (poranny obchód, zmiany dyżurów), zwiększone obciążenie SOR oraz scenariusze nadzwyczajne (epidemie). Koszt chmury modelowano nieliniowo:
+
+\begin{table}[h]
+\centering
+\small
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{|L{5.5cm}|C{2.6cm}|C{2.6cm}|C{2.6cm}|}
+\hline
+\rowcolor{gray!20}\textbf{Komponent} & \textbf{Baseline} & \textbf{Peak ($\times$2--4)} & \textbf{Model zakupu} \\
+\hline
+Compute (AKS, węzły) & 12 & 12--28 (autoscaling) & reserved + spot \\
+\hline
+Baza danych (vCore) & stałe & + repliki odczytu & reserved \\
+\hline
+Przepustowość sieci & stała & burst & on-demand \\
+\hline
+Koszt miesięczny compute & \multicolumn{3}{c|}{ok. 34 000 PLN (uśredniony z autoskalowaniem)} \\
+\hline
+\end{tabular}
+\caption{Model obciążenia i strategia zakupu zasobów chmurowych}
+\label{tab:load}
+\end{table}
+
+Założono zakup zasobów bazowych w modelu \textit{reserved instances} (oszczędność ok.~35--40\% względem \textit{on-demand}), a obsługę szczytów -- przez autoskalowanie w modelu \textit{on-demand}/\textit{spot}. Uśredniony koszt miesięczny (tab.~\ref{tab:opex_chmura}) uwzględnia ten model mieszany.
+
+\section{Symetryczny model trzech wariantów}
+
+Dla pełnej porównywalności każdy wariant rozpisano w tych samych kategoriach A--H, z analogicznym OPEX i TCO. Wariant I (MVP) zakłada mniejszy zespół (ok.~9 mies.), uproszczoną architekturę i brak integracji; Wariant III (enterprise) -- większy zespół (ok.~18 mies.), architekturę multi-region oraz warstwę analityczno-AI.
+
+\begin{table}[h]
+\centering
+\small
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{|L{6.2cm}|r|r|r|}
+\hline
+\rowcolor{gray!20}\textbf{Kategoria CAPEX} & \textbf{Wariant I} & \textbf{Wariant II} & \textbf{Wariant III} \\
+\hline
+A. Zespół i wytworzenie & 2 500 000 & 5 302 000 & 7 020 000 \\
+\hline
+B. Infrastruktura chmurowa & 450 000 & 960 000 & 1 425 000 \\
+\hline
+C. Sprzęt i urządzenia & 4 680 000 & 10 510 000 & 13 320 000 \\
+\hline
+D. Licencje i oprogramowanie & 330 000 & 490 000 & 1 125 000 \\
+\hline
+E. Migracja i digitalizacja & 880 000 & 1 730 000 & 3 315 000 \\
+\hline
+F. Integracje & 220 000 & 1 080 000 & 2 775 000 \\
+\hline
+G. Bezpieczeństwo i zgodność & 390 000 & 730 000 & 1 575 000 \\
+\hline
+H. Wdrożenie i szkolenia & 820 000 & 1 550 000 & 2 465 000 \\
+\hline
+\rowcolor{gray!10}\textbf{Cost base} & \textbf{10 270 000} & \textbf{22 352 000} & \textbf{33 020 000} \\
+\hline
+Rezerwa (18\% / 22\% / 25\%) & 1 849 000 & 4 918 000 & 8 255 000 \\
+\hline
+\rowcolor{gray!20}\textbf{CAPEX razem} & \textbf{12 119 000} & \textbf{27 270 000} & \textbf{41 275 000} \\
+\hline
+\textbf{OPEX / rok} & \textbf{3 200 000} & \textbf{6 543 000} & \textbf{10 440 000} \\
+\hline
+\rowcolor{gray!10}\textbf{TCO 5 lat} & \textbf{28 119 000} & \textbf{59 985 000} & \textbf{93 475 000} \\
+\hline
+\end{tabular}
+\caption{Symetryczny model kosztowy trzech wariantów (PLN netto)}
+\label{tab:trzy_warianty}
+\end{table}
+
+\section{CAPEX Wariantu II -- szczegółowy}
+\label{sec:capex_ii}
+
+Poniżej przedstawiono nakłady inwestycyjne rekomendowanego Wariantu II w ośmiu kategoriach (A–H). Wszystkie wartości podano w kwotach netto, ponieważ realizacja projektu zakłada współpracę z wykonawcami na podstawie umów B2B. Podatek VAT na fakturach B2B jest płacony w transakcji, lecz podlega odliczeniu w rozliczeniu VAT wykonawcy — stąd koszt wewnętrzny ujęto w kwocie netto. Wartość prac oszacowano na podstawie liczby osobo-miesięcy (OM) oraz rynkowych stawek wynagrodzeń.  \cite{Hays_2026, NoFluffJobs_2025}.
+
+\begin{longtable}{|L{5.0cm}|c|c|r|r|}
+\caption{Kategoria A -- zespół projektowy (Wariant II, PLN netto)}
+\label{tab:capex_zespol} \\
+\hline
+\rowcolor{gray!20}\textbf{Rola} & \textbf{Osoby} & \textbf{OM} & \textbf{Stawka/mies.} & \textbf{Koszt} \\
+\hline
+\endfirsthead
+\hline
+\rowcolor{gray!20}\textbf{Rola} & \textbf{Osoby} & \textbf{OM} & \textbf{Stawka/mies.} & \textbf{Koszt} \\
+\hline
+\endhead
+Kierownik projektu & 1 & 16 & 26 000 & 416 000 \\
+\hline
+Architekt oprogramowania & 1 & 8 & 35 000 & 280 000 \\
+\hline
+Tech Lead / Senior Backend & 1 & 16 & 31 000 & 496 000 \\
+\hline
+Programista Backend & 3 & 42 & 24 000 & 1 008 000 \\
+\hline
+Programista Frontend & 2 & 26 & 23 000 & 598 000 \\
+\hline
+Programista Mobile & 1 & 12 & 25 000 & 300 000 \\
+\hline
+Projektant UX/UI & 1 & 10 & 23 000 & 230 000 \\
+\hline
+Inżynier DevOps & 2 & 28 & 30 000 & 840 000 \\
+\hline
+Inżynier bezpieczeństwa & 1 & 9 & 34 000 & 306 000 \\
+\hline
+Inżynier QA & 2 & 28 & 21 000 & 588 000 \\
+\hline
+Analityk biznesowy & 1 & 10 & 24 000 & 240 000 \\
+\hline
+\rowcolor{gray!10}\textbf{Razem kategoria A} & & & & \textbf{5 302 000} \\
+\hline
+\end{longtable}
+
+\begin{longtable}{|L{6.6cm}|r|r|r|}
+\caption{Kategoria C -- sprzęt i urządzenia końcowe (Wariant II, PLN netto)}
+\label{tab:capex_sprzet} \\
+\hline
+\rowcolor{gray!20}\textbf{Pozycja} & \textbf{Ilość} & \textbf{Cena jedn.} & \textbf{Wartość} \\
+\hline
+\endfirsthead
+\hline 
+\rowcolor{gray!20}\textbf{Pozycja} & \textbf{Ilość} & \textbf{Cena jedn.} & \textbf{Wartość} \\
+\hline
+\endhead
+Tablet medyczny klasy enterprise & 810 & 4 200 & 3 402 000 \\
+\hline
+Akcesoria do tabletów & 810 & 350 & 283 500 \\
+\hline
+Stanowisko komputerowe (AiO) & 680 & 3 800 & 2 584 000 \\
+\hline
+Czytnik kart zbliżeniowych (2FA) & 2 000 & 180 & 360 000 \\
+\hline
+Drukarka opasek / etykiet & 150 & 1 600 & 240 000 \\
+\hline
+Skaner kodów kreskowych & 400 & 420 & 168 000 \\
+\hline
+Punkt dostępowy Wi-Fi 6 & 680 & 1 300 & 884 000 \\
+\hline
+Switch dostępowy PoE 48-port & 125 & 6 500 & 812 500 \\
+\hline
+Firewall NGFW (para HA) & 2 & 120 000 & 240 000 \\
+\hline
+Modernizacja okablowania LAN & 1 & 1 050 000 & 1 050 000 \\
+\hline
+Skaner produkcyjny do digitalizacji & 12 & 28 000 & 336 000 \\
+\hline
+UPS / zasilanie gwarantowane & 1 & 110 000 & 110 000 \\
+\hline
+Stacje robocze administracyjne & 1 & 40 000 & 40 000 \\
+\hline
+\rowcolor{gray!10}\textbf{Razem kategoria C} & & & \textbf{10 510 000} \\
+\hline
+\end{longtable}
+
+Pozostałe kategorie (B, D--H) podsumowano zbiorczo w tab.~\ref{tab:capex_suma}; ich pozycje składowe to: B -- konfiguracja sieci, przybliżone zużycie chmury w fazie budowy i testów obciążenia; D -- narzędzia ALM, OCR, EDR, certyfikaty; E -- digitalizacja dokumentacji aktywnej (9 mln stron $\times$ 0,15 PLN), migracja ETL, walidacja; F -- integracje P1, HL7/FHIR (LIS), DICOM/PACS, bramka SMS/Profil Zaufany; G -- DPIA, testy penetracyjne, certyfikacja ISO/IEC 27001, audyt RODO, SIEM/SOC; H -- szkolenia 2 600 osób, pilotaż, hypercare, zarządzanie zmianą, dokumentacja.
+
+\begin{table}[h]
+\centering
+\small
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{|L{10.5cm}|r|}
+\hline
+\rowcolor{gray!20}\textbf{Kategoria} & \textbf{Koszt} \\
+\hline
+A. Zespół projektowy i wytworzenie oprogramowania & 5 302 000 \\
+\hline
+B. Infrastruktura chmurowa -- uruchomienie & 960 000 \\
+\hline
+C. Sprzęt i urządzenia końcowe & 10 510 000 \\
+\hline
+D. Licencje i oprogramowanie & 490 000 \\
+\hline
+E. Migracja i digitalizacja dokumentacji & 1 730 000 \\
+\hline
+F. Integracje z systemami zewnętrznymi & 1 080 000 \\
+\hline
+G. Bezpieczeństwo i zgodność & 730 000 \\
+\hline
+H. Wdrożenie, szkolenia i zarządzanie zmianą & 1 550 000 \\
+\hline
+\rowcolor{gray!10}\textbf{Bazowy koszt techniczny (cost base)} & \textbf{22 352 000} \\
+\hline
+Rezerwa na ryzyko techniczne (ok.~11\%) & 2 459 000 \\
+\hline
+Rezerwa zarządcza (unknown-unknowns, ok.~11\%) & 2 459 000 \\
+\hline
+\rowcolor{gray!20}\textbf{CAPEX -- koszt wytworzenia} & \textbf{27 270 000} \\
+\hline
+\end{tabular}
+\caption{Podsumowanie CAPEX Wariantu II z dwuwarstwową rezerwą (PLN netto)}
+\label{tab:capex_suma}
+\end{table}
+
+Dwuwarstwowa struktura rezerwy rozdziela ryzyka znane od ryzyk zarządczych. Rezerwa techniczna obejmuje typowe odchylenia kosztów sprzętu, integracji, digitalizacji i pracy zespołu, natomiast rezerwa zarządcza pokrywa zdarzenia trudne do jednoznacznego skwantyfikowania na etapie kosztorysu, takie jak zmiany regulacyjne, opóźnienia po stronie interesariuszy lub rozszerzenia zakresu wymagane w toku odbiorów.
+
+
+\section{OPEX Wariantu II -- szczegółowy}
+
+\subsection{Infrastruktura chmurowa Azure}
+
+\begin{longtable}{|L{10.5cm}|r|}
+\caption{Miesięczny koszt infrastruktury Azure (Wariant II, PLN netto)}
+\label{tab:opex_chmura} \\
+\hline
+\rowcolor{gray!20}\textbf{Usługa} & \textbf{Koszt/mies.} \\
+\hline
+\endfirsthead
+\hline
+\rowcolor{gray!20}\textbf{Usługa} & \textbf{Koszt/mies.} \\
+\hline
+\endhead
+Klaster AKS (compute, reserved + autoscaling) & 34 000 \\
+\hline
+Azure Database for PostgreSQL (HA, repliki) & 22 000 \\
+\hline
+Azure Cache for Redis & 5 000 \\
+\hline
+Blob Storage -- warstwa gorąca (20 TB) & 7 000 \\
+\hline
+Blob Storage -- archiwum (retencja 20 lat) & 11 000 \\
+\hline
+Azure Backup (geo-redundantny) & 8 000 \\
+\hline
+Środowisko DR (West Europe, warm standby) & 14 000 \\
+\hline
+ExpressRoute + VPN & 10 000 \\
+\hline
+Transfer danych / egress & 4 000 \\
+\hline
+Front Door + WAF (portal pacjenta) & 3 500 \\
+\hline
+Defender for Cloud + Sentinel (SIEM) & 10 000 \\
+\hline
+Azure Monitor / Log Analytics & 6 000 \\
+\hline
+\rowcolor{gray!10}\textbf{Razem miesięcznie / rocznie} & \textbf{134 500 / 1 614 000} \\
+\hline
+\end{longtable}
+
+\subsection{Utrzymanie, wsparcie i odtworzenie}
+
+\begin{table}[h]
+\centering
+\small
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{|L{10.5cm}|r|}
+\hline
+\rowcolor{gray!20}\textbf{Pozycja} & \textbf{Koszt/rok} \\
+\hline
+Infrastruktura chmurowa Azure & 1 614 000 \\
+\hline
+Bramka SMS i powiadomienia & 110 000 \\
+\hline
+Licencje i subskrypcje (monitoring, EDR, security) & 360 000 \\
+\hline
+Zespół utrzymania i rozwoju (6 FTE) & 1 584 000 \\
+\hline
+Helpdesk i wsparcie użytkowników (L1/L2) & 780 000 \\
+\hline
+Wsparcie i gwarancje producentów sprzętu & 260 000 \\
+\hline
+Cykliczne audyty, pentesty, nadzór ISO & 160 000 \\
+\hline
+Rezerwa odtworzeniowa floty (bufor, wymiana, ubytki) & 1 080 000 \\
+\hline
+\rowcolor{gray!10}\textbf{Suma częściowa OPEX} & \textbf{5 948 000} \\
+\hline
+Rezerwa ryzyka (10\%) & 595 000 \\
+\hline
+\rowcolor{gray!20}\textbf{OPEX razem / rok} & \textbf{6 543 000} \\
+\hline
+\end{tabular}
+\caption{Roczny OPEX Wariantu II (PLN netto)}
+\label{tab:opex_suma}
+\end{table}
+
+\section{Koszty adopcji organizacyjnej}
+
+W szpitalach koszty adopcji systemu (tzw. koszty ukryte) stanowią typowo 10--25\% całkowitego kosztu wdrożenia \cite{Deloitte_DigitalHealth_2024}. Pominięcie ich zaniża rzeczywisty koszt projektu. Mają one charakter w przeważającej mierze \textbf{kosztu utraconych korzyści} (opportunity cost), a nie wydatku gotówkowego na rzecz wykonawcy, dlatego ujęto je odrębnie.
+
+\begin{table}[h]
+\centering
+\small
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{|L{8.0cm}|r|r|r|}
+\hline
+\rowcolor{gray!20}\textbf{Składnik} & \textbf{Pesym.} & \textbf{Bazowy} & \textbf{Optym.} \\
+\hline
+Praca równoległa papier + EMR (podwójna dokumentacja) & 3 300 000 & 2 200 000 & 1 720 000 \\
+\hline
+Krzywa uczenia / spadek tempa pracy & 2 950 000 & 1 950 000 & 1 520 000 \\
+\hline
+Spadek przepustowości obsługi pacjentów & 2 050 000 & 1 390 000 & 1 080 000 \\
+\hline
+\rowcolor{gray!10}\textbf{Razem koszt adopcji (jednorazowy)} & \textbf{8 300 000} & \textbf{5 540 000} & \textbf{4 320 000} \\
+\hline
+\end{tabular}
+\caption{Koszty adopcji organizacyjnej Wariantu II (PLN, opportunity cost)}
+\label{tab:adopcja}
+\end{table}
+
+Koszty te ograniczają działania zaplanowane w rozdziale~\ref{chapter:implementation}: wdrożenie etapowe (pilotaż), program „super-userów”, szkolenia zróżnicowane grupowo oraz 3-miesięczny hypercare. Ze względu na charakter (koszt utraconych korzyści, a nie wydatek gotówkowy) koszty adopcji wykazano odrębnie i nie wliczono ich do CAPEX ani do ceny kontraktowej.
+
+\section{Model komercyjny i cena kontraktowa}
+
+Kosztorys techniczny (tab.~\ref{tab:capex_suma}) to \textbf{koszt wytworzenia} po stronie wykonawcy, a nie cena rynkowa kontraktu. Cena kontraktowa, jaką zapłaciłby szpital za realizację „pod klucz”, zawiera dodatkowo narzut realizacyjny oraz marżę wykonawcy.
+
+\begin{table}[h]
+\centering
+\small
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{|L{8.5cm}|r|}
+\hline
+\rowcolor{gray!20}\textbf{Poziom} & \textbf{Wartość} \\
+\hline
+Koszt wytworzenia (z rezerwą) & 27 270 000 \\
+\hline
++ Narzut realizacyjny (8\%) & 2 181 600 \\
+\hline
+Koszt skorygowany & 29 451 600 \\
+\hline
++ Marża wykonawcy (18\%) & 5 301 288 \\
+\hline
+\rowcolor{gray!20}\textbf{Cena kontraktowa (netto)} & \textbf{34 752 888} \\
+\hline
+Cena kontraktowa (brutto, VAT 23\%) & 42 746 052 \\
+\hline
+\end{tabular}
+\caption{Model komercyjny -- przejście od kosztu wytworzenia do ceny kontraktowej (Wariant II)}
+\label{tab:komercyjny}
+\end{table}
+
+\section{Scenariusze i analiza wrażliwości}
+
+\subsection{Scenariusze base / optimistic / worst}
+
+Zgodnie z klasą dokładności estymaty (AACE klasa~3 \cite{AACE_18R97}) przedstawiono trzy scenariusze kosztowe dla Wariantu II.
+
+\begin{table}[h]
+\centering
+\small
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{|L{5.5cm}|r|r|r|}
+\hline
+\rowcolor{gray!20}\textbf{Pozycja} & \textbf{Optym.~($-20\%$)} & \textbf{Bazowy} & \textbf{Pesym.~($+30\%$)} \\
+\hline
+CAPEX (koszt wytworzenia) & 21 816 000 & 27 270 000 & 35 451 000 \\
+\hline
+OPEX / rok & 5 234 000 & 6 543 000 & 8 506 000 \\
+\hline
+CAPEX+OPEX 5 lat & 47 988 000 & 59 985 000 & 77 981 000 \\
+\hline
+\end{tabular}
+\caption{Scenariusze kosztowe Wariantu II (PLN netto)}
+\label{tab:scenariusze}
+\end{table}
+
+\subsection{Analiza wrażliwości (tornado)}
+
+Największy wpływ na koszt całkowity mają (w kolejności malejącej):
+
+\begin{enumerate}
+    \item koszt floty sprzętu (kategoria C) -- wrażliwy na liczbę tabletów i ceny rynkowe,
+    \item koszt zespołu (kategoria A) -- wrażliwy na czas trwania i stawki B2B,
+    \item koszt chmury (OPEX) -- wrażliwy na wolumen danych i obciążenie szczytowe,
+    \item ryzyko integracji P1 (kategoria F) -- wrażliwe na zmiany wymagań Centrum e-Zdrowia.
+\end{enumerate}
+
+\subsection{Macierz scenariuszy ryzyka}
+
+\begin{table}[h]
+\centering
+\small
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{|L{6.5cm}|L{4.5cm}|r|}
+\hline
+\rowcolor{gray!20}\textbf{Scenariusz} & \textbf{Skutek} & \textbf{Wpływ na TCO} \\
+\hline
++20\% pacjentów / wolumenu danych & wzrost storage, compute, licencji & +6--9\% \\
+\hline
++30\% zużycia chmury (peak) & wzrost OPEX chmury & +3--5\% \\
+\hline
+Opóźnienie wdrożenia 6 mies. & dłuższy koszt zespołu + adopcja & +5--8\% \\
+\hline
+Opóźnienie wdrożenia 12 mies. & jw.~+ ryzyko regulacyjne & +10--15\% \\
+\hline
+Zmiana wymagań P1 & przebudowa integracji & +2--4\% \\
+\hline
+\end{tabular}
+\caption{Macierz scenariuszy ryzyka i ich wpływu na TCO}
+\label{tab:macierz_ryzyka}
+\end{table}
+
+\section{TCO i wskaźniki jednostkowe}
+\label{sec:wskazniki}
+
+\begin{table}[h]
+\centering
+\small
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{|L{8.5cm}|r|}
+\hline
+\rowcolor{gray!20}\textbf{Wskaźnik (Wariant II)} & \textbf{Wartość} \\
+\hline
+CAPEX (koszt wytworzenia) & 27 270 000 \\
+\hline
+Cena kontraktowa (netto) & 34 752 888 \\
+\hline
+TCO 5 lat (cena kontraktowa + OPEX) & 67 467 888 \\
+\hline
+CAPEX na łóżko & 23 713 \\
+\hline
+TCO 5 lat na łóżko (perspektywa szpitala) & 58 668 \\
+\hline
+CAPEX na konto personelu & 10 488 \\
+\hline
+\end{tabular}
+\caption{Wskaźniki jednostkowe Wariantu II (PLN netto)}
+\label{tab:wskazniki}
+\end{table}
+
+\paragraph{Uwaga do TCO.} Wiersz „koszt wytworzenia + OPEX” odzwierciedla perspektywę wykonawcy; wiersz „cena kontraktowa + OPEX” -- rzeczywisty wydatek szpitala w horyzoncie 5 lat (netto, bez kosztów adopcji organizacyjnej).
+
+\section{Harmonogram płatności i źródła finansowania}
+
+Płatności powiązano z kamieniami milowymi i procentem \textbf{ceny kontraktowej netto} (tab.~\ref{tab:komercyjny}), którą szpital opłaca wykonawcy. OPEX (tab.~\ref{tab:opex_suma}) rozliczany jest odrębnie, w cyklu rocznym, począwszy od roku produkcyjnego.
+
+\begin{table}[h]
+\centering
+\small
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{|L{5.5cm}|L{5.5cm}|c|}
+\hline
+\rowcolor{gray!20}\textbf{Kamień milowy} & \textbf{Akceptowana dostawa} & \textbf{\% ceny kontr.} \\
+\hline
+M0 -- podpisanie umowy, inicjacja & mobilizacja zespołu, plan projektu & 10\% \\
+\hline
+M1 -- architektura i środowisko deweloperskie & dokumentacja arch., Azure dev/test & 15\% \\
+\hline
+M2 -- infrastruktura sieciowa\newline{\small (równolegle z M1--M3)} & kablowanie LAN, switche, AP Wi-Fi, firewall & 15\% \\
+\hline
+M3 -- odbiór UAT oprogramowania & system + integracje P1/LIS/PACS zaakceptowane & 25\% \\
+\hline
+M4 -- dostawa urządzeń końcowych & tablety, stacje, drukarki, czytniki, skanery & 20\% \\
+\hline
+M5 -- pilotaż i start digitalizacji & 3 oddziały, digitalizacja uruchomiona & 10\% \\
+\hline
+M6 -- go-live i koniec hypercare & odbiór końcowy całości & 5\% \\
+\hline
+\rowcolor{gray!10}\textbf{Razem} & & \textbf{100\%} \\
+\hline
+\end{tabular}
+\caption{Harmonogram płatności powiązany z kamieniami milowymi (\% ceny kontraktowej netto)}
+\label{tab:platnosci}
+\end{table}
+
+Rekomendowany montaż finansowy łączy środki własne szpitala z dofinansowaniem zewnętrznym: Krajowy Plan Odbudowy (komponent cyfryzacji ochrony zdrowia), fundusze europejskie (FENG, programy regionalne), dotacje Ministerstwa Zdrowia oraz Centrum e-Zdrowia.
+
+\section{Rezerwa ryzyka i założenia kosztowe}
+
+Główne źródła ryzyka kosztowego to integracje zewnętrzne (zwłaszcza P1), zmiany regulacyjne, opóźnienia wdrożeniowe oraz złożoność migracji danych. Przyjęto dwuwarstwową rezerwę CAPEX (rezerwa techniczna + rezerwa zarządcza, łącznie ok.~22\%) oraz 10\% rezerwy OPEX. Kosztorys obowiązuje przy założeniach: ceny rynkowe 2026, stabilność cenników dostawcy chmury, dostępność zespołu o założonych kompetencjach, brak zmian zakresu (Wariant II) oraz terminowe udostępnienie danych i środowisk przez szpital. Istotna zmiana założeń będzie wymagała ponownego przeliczenia i może znacząco wpłynąć na wycenę.
+
+\section{Podsumowanie i rekomendacja}
+\label{sec:rekomendacja}
+
+Dla rekomendowanego Wariantu II koszt wytworzenia wynosi \textbf{27,27 mln PLN netto}, cena kontraktowa \textbf{ok.~34,75 mln PLN netto}, OPEX \textbf{6,54 mln PLN/rok}, TCO 5 lat \textbf{ok.~67,5 mln PLN netto}, a koszty adopcji organizacyjnej (poza umową z wykonawcą) \textbf{ok.~5,5 mln PLN} w scenariuszu bazowym. Przyjęty budżet obejmuje konserwatywną rezerwę na ryzyka techniczne i zarządcze, a wskaźnik TCO na łóżko mieści się w dolnej części przedziału benchmarkowego.
+
+Porównanie wariantów pokazuje, że Wariant~I, choć najtańszy, nie spełnia kluczowych wymagań (brak trybu offline, integracji z P1 oraz pełnego audytu), natomiast Wariant~III jest nadmiarowy względem aktualnych potrzeb placówki i obarczony dodatkowymi wymogami (AI Act). \textbf{Wariant~II stanowi optimum kosztowo-funkcjonalne} i jest rekomendowany jako rozwiązanie docelowe oraz wybrany przez klienta.
