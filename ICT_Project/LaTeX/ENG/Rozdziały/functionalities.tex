@@ -1,0 +1,113 @@
+\Chapter{Description of system functionalities}
+\label{chapter:functionalities}
+
+\section{Introduction}
+In this part we focus on the description of functional requirements (the answer to "what?") rather than non-functional requirements (the answer to "how?") described from the user's perspective. This means that we are interested in the relationship between input data, system state and output data, and not, for example, the speed of process execution.
+
+\subsection{Registration and login}
+Each user, in order to gain access to the service, must log in to their account. Facility staff accounts are created and updated by the System Administrator, who is an employee of the system supplier providing support for the program's operation, which is outside the scope of this document. Patient accounts are created and updated by Administrative staff using forms. Logging into the service is two-step: it requires entering a login and password, as well as the employee verification method used in the facility, such as a magnetic card (for Staff) or a verification code sent by SMS or the mObywatel application (for Patients). After completing the required fields and clicking the "Log in" button, visible from the login panel, the system will redirect the user to the Main panel.
+
+\subsection{Panels and navigation}
+The view of each user after logging in is the main panel. Navigation takes place through interactions with the buttons of the navigation bar, the main button and some panel buttons.
+The content of the panel buttons differs depending on the panel. The following panels will be created:\begin{itemize}
+    \item login
+    \item search (Staff only)
+    \item main
+    \item procedure history
+    \item procedure information
+    \item personal data
+    \item forms
+\end{itemize}
+The content of the navigation bar is the same for all user panels and navigates to the corresponding panels:\begin{itemize}
+    \item Personal data
+    \item Procedures
+    \item Forms
+    \item Search (Staff only)
+\end{itemize}
+The main button navigates to the main panel.
+
+\subsection{Forms and notifications}
+The method of transferring documentation, including medical documentation, is based on forms displayed, created, modified and sent between users. Referrals for procedures, prescriptions, data modifications - all of these are transferred using forms. These interactions take place in the forms panel, using the interactions available there, depending on the role. CRUD operations on forms are performed using the corresponding buttons available next to the form name. A list of forms to download and complete is available. Every change in a form must be approved by Administrative staff. Changes in forms are communicated to the user via the notification icon available from the main panel.
+
+\section{Actors, their actions and permissions}
+The project assumes a division of application functionality according to 3 roles: Patient, Medical staff and Administrative staff. The roles differ in the scope of access to information and the degree of interaction with the environment.
+
+\subsection{Patient}
+\subsubsection{Permissions}
+The Patient has permissions \textbf{exclusively} to read data and submit forms. The Patient has access \textbf{exclusively} to information about themselves. These include permissions to:\begin{itemize}
+    \item Display the summary (notifications, next procedure, last procedure, prescriptions) from the main panel
+    \item Display the user's personal data from the personal data panel
+    \item Display the procedure history, both past and future, from the procedure history panel
+    \item Display procedure information from the procedure information panel
+    \item Display and submit forms from the forms panel
+    \item Display the list of available forms from the forms panel
+\end{itemize}
+\subsubsection{Actions and navigation}
+\begin{itemize}
+    % \item After clicking the "Personal data" button, available from the navigation bar, the system will redirect the user to the personal data panel
+    % \item After clicking the "All procedures" button, available after expanding the side menu from the main panel, the system will redirect the user to the procedure history panel
+    \item After clicking the procedure name from the main panel, the system will redirect the user to the procedure information panel
+    \item After clicking an active prescription, the system will open the user's device system application for reading the given file type
+    \item After clicking the test/procedure name from the test/procedure history panel, the system will redirect the user to the procedure information panel
+    \item After dragging a form file into the upload field, from the forms panel, and then confirming by the user, the system will accept the form
+    % \item After clicking the "Back" button from any panel, except the main panel, the system will redirect the user to the previously visited panel.
+    % \item After clicking the notification icon from the main panel, the system will expand the notifications context menu.
+    % \item After clicking a notification from the notifications context menu, the system will redirect the user to the view described in the notification
+\end{itemize}
+\subsection{Medical staff}
+This section concerns a wide group of hospital employees, such as: doctors, nurses, midwives, diagnosticians, laboratory technicians or mortuary employees. Despite performing different jobs, they use the same information. For this reason, they are combined into one actor.
+\subsubsection{Permissions}
+Medical staff have permissions to:\begin{itemize}
+    \item Display notifications and the visit schedule from the main panel
+    \item Change the day displayed in the calendar widget
+    \item Display the list of patients from the search panel
+    \item Search for and select Patients from the search panel
+    \item Display their own personal data from the personal data panel
+    \item Display the Patient's personal data from the personal data panel
+    \item Display the Patient's procedure history, both past and future, from the procedure history panel
+    \item Display procedure information from the procedure information panel
+    \item Display and submit forms from the forms panel
+    \item Display the list of available forms from the forms panel
+    \item Display scheduled procedures in the calendar from the main panel
+\end{itemize}
+\subsubsection{Actions and navigation}
+\begin{itemize}
+    \item After clicking the calendar widget from the main panel, the system will open a date selector in which the user can select and apply the day of interest. The default date is the current date.
+    \item After clicking a visit visible in the calendar from the main panel, the system will redirect the user to the procedure information panel
+    \item After completing the "PESEL number" selection field from the search panel, the system will display the Patient's first and last name at the top of the list, and after clicking it the system will mark the Patient as active
+    % \item After clicking the "Create procedure order" button, available after expanding the side menu from the Patient's main panel, the system will redirect the user to the appropriate form. This action should be treated as a referral for a test/procedure.
+    \item After clicking the procedure name from the procedure history panel, the system will redirect the user to the procedure information panel
+    \item After dragging a form file into the upload field, from the forms panel, and then confirming by the user, the system will accept the form
+    \end{itemize}
+    % \item After clicking the notification icon from the search panel, the system will expand the notifications context menu
+    % \item After clicking a notification from the notifications context menu, the system will redirect the user to the view described in the notification
+    % \item After clicking the "Back" button from any panel, except the main panel, the system will redirect the user to the previously visited panel.
+
+\subsection{Administrative staff}
+\subsubsection{Permissions}
+Administrative staff have permissions to:\begin{itemize}
+    \item Display the summary (notifications, required actions, forms to approve) from the main panel
+    \item Search for Patient accounts from the search panel
+    \item Display the Patient's personal data from the personal data panel
+    \item Display their own personal data from the personal data panel
+    \item Display the Patient's procedure history from the procedure history panel
+    \item Display information about a specific procedure from the procedure information panel
+    \item Display the list of available forms from the forms panel
+    \item Create Patient accounts from the form panel
+    \item Modify Patients' personal data from the form panel
+    \item Create procedure orders from the form panel
+    \item Create, read, approve and modify forms requiring approval from the form panel
+\end{itemize}
+\subsubsection{Actions and navigation}
+\begin{itemize}
+    \item After clicking the Patient's data from the main panel, the system will mark the Patient as active
+    \item After completing the "PESEL number" selection field from the search panel, the system will display the Patient's first and last name at the top of the list, and after clicking it the system will mark the Patient as active
+    \item After clicking the procedure name from the procedure history panel, the system will redirect the user to the procedure information panel
+    \item After dragging a form file into the upload field, from the forms panel, and then confirming by the user, the system will accept the form
+    % \item After clicking the "Modify Patient personal data" button, available after expanding the side menu from the Patient's main panel, the system will redirect the user to the appropriate form
+    % \item After clicking the "Create procedure order" button, available after expanding the side menu from the Patient's main panel, the system will redirect the user to the appropriate form
+    % \item After clicking the "Modify procedure data" button from the procedure information panel, \textbf{only if the procedure has not been completed}, the system will redirect the user to the appropriate form. The action should be treated as the execution of a procedure referral created earlier by Medical staff
+    % \item After clicking the "All account data" button, available after expanding the side menu from the Patient's main panel, the system will redirect the user to the personal data panel
+    % \item After clicking the "Back" button from any panel, except the main panel, the system will redirect the user to the previously visited panel.
+    % \item After saving changes in any form, the system sends a notification to the Patient and Medical staff
+\end{itemize}

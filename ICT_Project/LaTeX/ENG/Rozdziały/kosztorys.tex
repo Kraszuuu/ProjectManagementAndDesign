@@ -1,0 +1,681 @@
+\chapter{Cost estimate for EMR system implementation}
+\label{chapter:costs}
+
+\section{Introduction and methodology}
+
+This chapter presents a detailed cost estimate for the implementation of the Electronic Medical Record (EMR) system at Szpital im. Bajgla in Wrocław. The cost estimate covers capital expenditure (CAPEX), operating expenditure (OPEX) and the total cost of ownership (TCO) over a 5-year horizon. All three solution variants described in chapter~\ref{chapter:project-idea} were priced at the same level of detail, which ensures full comparability, and the detailed estimate was developed for the recommended Variant~II, selected by the client as the solution to be implemented.
+
+\subsection{Applied principles}
+
+\begin{itemize}
+    \item \textbf{Bottom-up estimation} - each cost results from a specific item (person-month, piece of equipment, unit of cloud resource).
+    \item \textbf{CAPEX/OPEX split} and full total cost of ownership (TCO) over a 5-year horizon.
+    \item \textbf{Separation of the cost of delivery from the contract price} - an explicit implementation overhead and vendor margin leading to the contract price.
+    \item \textbf{Scenarios and sensitivity analysis} - point values were supplemented with an optimistic, base and pessimistic variant, as well as a cost risk matrix.
+    \item \textbf{Market benchmarks} - labour rates and unit costs referenced to published sources.
+\end{itemize}
+
+\subsection{Price basis}
+
+Amounts are given in PLN, at \textbf{net} values (2026 price level). Labour rates in category~A are given as net amounts under B2B contracts -- VAT on subcontractor invoices is deductible at the contractor (see section~\ref{sec:capex_ii}). VAT of 23\% applies only to the \textbf{contract price} payable by the hospital (table~\ref{tab:komercyjny}). Rate benchmarks: \cite{Hays_2026, NoFluffJobs_2025}; cloud costs: \cite{Azure_Pricing_2026}.
+
+\section{Input assumptions}
+
+\subsection{Facility profile, population and data}
+
+To base the cost estimate on the real scale of a large clinical hospital, the assumptions were based on data from the University Clinical Hospital in Wrocław from the 2014 annual report \cite{USK_Raport_2014}. Some parameters (number of departments, employment, number of admissions and consultations) come directly from the report; the remaining ones -- not included in the report but necessary for system sizing (number of beds, accounts and system load, data volumes) -- were estimated. The origin of each parameter is marked in the "Source" column.
+
+\begin{table}[h]
+\centering
+\small
+\renewcommand{\arraystretch}{1.15}
+\begin{tabular}{|L{5.4cm}|L{6.4cm}|L{2.4cm}|}
+\hline
+\rowcolor{gray!20}\textbf{Parameter} & \textbf{Value} & \textbf{Source} \\
+\hline
+Number of departments / clinics & 37 departments / 23 clinics & report \\
+\hline
+Outpatient clinics / diagnostic laboratories & 37 / 31 & report \\
+\hline
+Total employment & 2,897 (including 2,170 employment contracts, 89 contracts) & report \\
+\hline
+Staff accounts in the EMR system & 2,600 & estimate \\
+\hline
+Number of beds & 1,150 & estimate \\
+\hline
+Total hospital admissions per year & 116,423 & report \\
+\hline
+\quad including departments / ED / dialysis & 58,167 / 34,539 / 23,717 & report \\
+\hline
+Outpatient consultations per year & 110,227 & report \\
+\hline
+Active patient accounts (portal) & 400,000 & estimate \\
+\hline
+Peak number of concurrent users & 700 & estimate \\
+\hline
+Peak API load & 1,200 req./s & estimate \\
+\hline
+Annual growth of structured data / documents & 300 GB / 2 TB & estimate \\
+\hline
+Imaging data (PACS/DICOM) per year & 50 TB & estimate \\
+\hline
+Required medical documentation retention period & 20 years & legal requirement \\
+\hline
+Operating mode & 24/7/365 & report \\
+\hline
+\end{tabular}
+\caption{Input assumptions -- based on USK Wrocław (2014 report)}
+\label{tab:zalozenia}
+\end{table}
+
+\paragraph{Notes on estimates.} The number of beds (approx.~1,150) was estimated from the number of admissions to departments (58,167) with an average hospitalization time of approx.~5.5 days and an occupancy of approx.~72\%. The number of EMR staff accounts (approx.~2,600) was adopted as medical and administrative staff with system access (excluding volunteers and some part of contract work). Data volumes and system load were estimated in proportion to the scale of the facility's activity. Scale data come from USK Wrocław (2014 report) as a benchmark for a large clinical hospital; for a smaller facility, the sizing should be adjusted proportionally.
+
+\subsection{Hardware fleet assumptions}
+
+In order to present the assumptions concerning the hardware model reliably, the following operational assumptions were adopted and included in capital and operating costs:
+
+\begin{itemize}
+    \item \textbf{Hardware buffer} - a spare pool of 12\% of the number of mobile devices and workstations (replacement equipment during servicing).
+    \item \textbf{Replacement cycle} - tablets 4 years, computer workstations 5 years, network infrastructure 6--7 years.
+    \item \textbf{Losses and damage} - assumed tablet loss/damage rate of 5\% per year.
+    \item \textbf{Replacement financing} - buffer, replacement and loss costs are covered from the replacement reserve in OPEX (table~\ref{tab:opex_suma}) and in the pessimistic cost scenario.
+\end{itemize}
+
+\section{Market benchmarks and data sources}
+
+In order to avoid unsupported rates, the adopted cost assumptions were referenced to published market benchmarks and analyses of EMR/EHR system implementations in hospitals of comparable scale.
+
+\begin{table}[h]
+\centering
+\small
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{|p{4.2cm}|p{5.8cm}|p{3.2cm}|}
+\hline
+\rowcolor{gray!20}\textbf{Area} & \textbf{Source} & \textbf{Application} \\
+\hline
+B2B rates for IT specialists & Hays Salary Guide \cite{Hays_2026}, NoFluffJobs \cite{NoFluffJobs_2025} & Category A \\
+\hline
+Cloud pricing (IaaS/PaaS) & Microsoft Azure Pricing \cite{Azure_Pricing_2026} & Category B, OPEX \\
+\hline
+National integration requirements & Centrum e-Zdrowia \cite{CeZ_P1_2025} & Category F \\
+\hline
+EMR/EHR implementation benchmarks & Software Finder (Oracle Cerner) \cite{SoftwareFinder_Cerner_2026}, The Pricer (Epic EMR) \cite{ThePricer_Epic_2024} & CAPEX/TCO validation \\
+\hline
+\end{tabular}
+\caption{Benchmark sources adopted in the cost estimate}
+\label{tab:benchmarki}
+\end{table}
+
+In addition to unit benchmarks, the total project budget was also validated against publicly described EMR/EHR system implementations carried out in hospitals of comparable scale of activity.
+
+According to the Software Finder compilation for the Oracle Cerner system \cite{SoftwareFinder_Cerner_2026}, implementation costs in hospitals with approximately 500 beds typically range from USD 12 to 30 million, with annual maintenance costs of USD 1.5--3 million. This corresponds to a range of approximately PLN 48--120 million (at an exchange rate of USD 1 = PLN 4.0).
+
+Analyses concerning the Epic EMR system indicate, however, that implementations in large organizations (assuming 1,000 beds) may reach USD 50--100 million, which corresponds to approximately PLN 200--400 million \cite{ThePricer_Epic_2024}.
+
+\begin{table}[h]
+\centering
+\small
+\renewcommand{\arraystretch}{1.2}
+\setlength{\tabcolsep}{4pt}
+
+\begin{tabular}{|p{2.8cm}|p{2.6cm}|p{1.6cm}|p{2.2cm}|p{2.6cm}|}
+\hline
+\rowcolor{gray!20}
+\textbf{System} & \textbf{Cost range} & \textbf{Beds} & \textbf{Cost/bed} & \textbf{Cost/bed PPP} \\
+\hline
+
+Oracle Cerner &
+PLN 48--120 million &
+500 &
+PLN 96--240 thousand &
+PLN 57.6--163.2 thousand \\
+\hline
+
+Epic EMR &
+PLN 200--400 million &
+1000 &
+PLN 200--400 thousand &
+PLN 120--272 thousand \\
+\hline
+
+\end{tabular}
+
+\caption{EMR/EHR implementation benchmarks per hospital bed (PPP adjustment)}
+\label{tab:per_bed_benchmark}
+\end{table}
+
+The presented values indicate that the total cost of implementing EMR/EHR-class systems in large hospitals falls within a wide range from several dozen to several hundred million PLN, depending on the scale of the organization, the complexity of clinical processes and the scope of integration with external systems. Per single hospital bed, this spread amounts to approximately PLN 96 thousand to PLN 400 thousand. Such a large range results primarily from differences in the implementation model (on-premise vs. cloud), the level of system customization, the number of clinical modules and the costs of organizational changes and staff training. In practice, this means that lower values correspond to implementations with a limited functional scope, while the upper limits concern comprehensive digital transformations covering the entire hospital organization.
+
+It should also be noted that this is an American benchmark, and therefore a project implemented and deployed in Poland will be based on lower remuneration rates for IT specialists and must be adapted to the budget constraints of the public healthcare system. In order to convert the cost benchmarks, they were adjusted for differences in purchasing power between Poland and the United States using the PPP (Purchasing Power Parity) coefficient, determined on the basis of the International Comparison Program (ICP) methodology of the World Bank \cite{WorldBank_ICP_Methodology}.
+
+As a result, an effective PPP coefficient of 0.66 was adopted for the cost benchmark conversions, constituting the midpoint of the 0.60--0.68 range (ICP World Bank) and an adjustment for the specificity of highly specialized services in the IT sector. This value was applied as a uniform correction multiplier in the conversion of costs from the American market to Polish conditions, having the character of a cost adjustment factor.
+
+The application of the PPP coefficient results in the conversion of the original benchmark range to the level of PLN 57.6--272 thousand per single hospital bed.
+
+\section{Architecture and SLA of variants}
+
+The variants differ not only in functional scope, but primarily in architecture and the resulting level of availability (SLA), which directly determines cost.
+
+\begin{table}[h]
+\centering
+\small
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{|L{3.2cm}|L{3.8cm}|L{3.8cm}|L{3.8cm}|}
+\hline
+\rowcolor{gray!20}\textbf{Feature} & \textbf{Variant I (MVP)} & \textbf{Variant II (optimal)} & \textbf{Variant III (enterprise)} \\
+\hline
+Architecture & Modular monolith & Microservices, RHA & Multi-region active-active \\
+\hline
+Cloud region & 1 (Poland Central) & 1 + warm DR (West Europe) & 2 active + warm DR \\
+\hline
+Offline mode & none & full (sync + conflict handling) & full + edge \\
+\hline
+Availability SLA & 99.0\% & 99.9\% & 99.99\% \\
+\hline
+Allowable downtime/year & ~3.65 days & ~8.8 hours & ~52 min \\
+\hline
+External integrations & none & P1, LIS, PACS & + devices, API, AI \\
+\hline
+Compute footprint (nodes) & ~6 & ~18 (+DR) & ~36 (+DR) \\
+\hline
+\end{tabular}
+\caption{Comparison of variant architecture and SLA}
+\label{tab:architektura}
+\end{table}
+
+\section{Cloud provider selection and load model}
+
+\subsection{Recommendation}
+
+\textbf{Microsoft Azure} is recommended, with the primary region \textbf{Poland Central (Warsaw)} and the DR backup region \textbf{West Europe (Amsterdam)} -- both in the EEA, which ensures GDPR compliance in terms of data residency. Azure was selected due to the presence of a region in Poland, its certifications and the ease of hybrid integration (ExpressRoute).
+
+\begin{table}[h]
+\centering
+\small
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{|L{3.4cm}|C{2.4cm}|C{2.4cm}|C{2.4cm}|C{2.4cm}|}
+\hline
+\rowcolor{gray!20}\textbf{Criterion} & \textbf{Azure} & \textbf{AWS} & \textbf{Google Cloud} & \textbf{OVHcloud} \\
+\hline
+Region in Poland & yes & no & no & yes \\
+\hline
+Managed services & very high & very high & high & medium \\
+\hline
+Public sector compliance & very high & high & high & high \\
+\hline
+Relative cost & medium & medium & medium & low \\
+\hline
+Recommendation & \textbf{selected} & alternative & alternative & considered \\
+\hline
+\end{tabular}
+\caption{Comparison of cloud providers}
+\label{tab:chmura}
+\end{table}
+
+\subsection{Load model}
+
+EMR system load is not constant: there are daily peaks (morning rounds, shift changes), increased Emergency Department load and emergency scenarios (epidemics). Cloud cost was modelled non-linearly:
+
+\begin{table}[h]
+\centering
+\small
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{|L{5.5cm}|C{2.6cm}|C{2.6cm}|C{2.6cm}|}
+\hline
+\rowcolor{gray!20}\textbf{Component} & \textbf{Baseline} & \textbf{Peak ($\times$2--4)} & \textbf{Purchasing model} \\
+\hline
+Compute (AKS, nodes) & 12 & 12--28 (autoscaling) & reserved + spot \\
+\hline
+Database (vCore) & fixed & + read replicas & reserved \\
+\hline
+Network throughput & fixed & burst & on-demand \\
+\hline
+Monthly compute cost & \multicolumn{3}{c|}{approx. PLN 34,000 (averaged with autoscaling)} \\
+\hline
+\end{tabular}
+\caption{Load model and cloud resource purchasing strategy}
+\label{tab:load}
+\end{table}
+
+It was assumed that baseline resources would be purchased in the \textit{reserved instances} model (savings of approx.~35--40\% compared with \textit{on-demand}), and peaks would be handled by autoscaling in the \textit{on-demand}/\textit{spot} model. The average monthly cost (table~\ref{tab:opex_chmura}) takes this mixed model into account.
+
+\section{Symmetric three-variant model}
+
+For full comparability, each variant was broken down into the same categories A--H, with analogous OPEX and TCO. Variant I (MVP) assumes a smaller team (approx.~9 months), a simplified architecture and no integrations; Variant III (enterprise) -- a larger team (approx.~18 months), a multi-region architecture and an analytics-AI layer.
+
+\begin{table}[h]
+\centering
+\small
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{|L{6.2cm}|r|r|r|}
+\hline
+\rowcolor{gray!20}\textbf{CAPEX category} & \textbf{Variant I} & \textbf{Variant II} & \textbf{Variant III} \\
+\hline
+A. Team and development & 2,500,000 & 5,302,000 & 7,020,000 \\
+\hline
+B. Cloud infrastructure & 450,000 & 960,000 & 1,425,000 \\
+\hline
+C. Hardware and devices & 4,680,000 & 10,510,000 & 13,320,000 \\
+\hline
+D. Licences and software & 330,000 & 490,000 & 1,125,000 \\
+\hline
+E. Migration and digitization & 880,000 & 1,730,000 & 3,315,000 \\
+\hline
+F. Integrations & 220,000 & 1,080,000 & 2,775,000 \\
+\hline
+G. Security and compliance & 390,000 & 730,000 & 1,575,000 \\
+\hline
+H. Deployment and training & 820,000 & 1,550,000 & 2,465,000 \\
+\hline
+\rowcolor{gray!10}\textbf{Cost base} & \textbf{10,270,000} & \textbf{22,352,000} & \textbf{33,020,000} \\
+\hline
+Reserve (18\% / 22\% / 25\%) & 1,849,000 & 4,918,000 & 8,255,000 \\
+\hline
+\rowcolor{gray!20}\textbf{Total CAPEX} & \textbf{12,119,000} & \textbf{27,270,000} & \textbf{41,275,000} \\
+\hline
+\textbf{OPEX / year} & \textbf{3,200,000} & \textbf{6,543,000} & \textbf{10,440,000} \\
+\hline
+\rowcolor{gray!10}\textbf{5-year TCO} & \textbf{28,119,000} & \textbf{59,985,000} & \textbf{93,475,000} \\
+\hline
+\end{tabular}
+\caption{Symmetric cost model of the three variants (PLN net)}
+\label{tab:trzy_warianty}
+\end{table}
+
+\section{CAPEX Variant II -- detailed}
+\label{sec:capex_ii}
+
+The capital expenditure of the recommended Variant II is presented below in eight categories (A--H). All values are given as net amounts, because the project implementation assumes cooperation with contractors under B2B contracts. VAT on B2B invoices is paid in the transaction but is deductible in the contractor's VAT settlement -- hence the internal cost is shown net. The value of work was estimated based on the number of person-months (PM) and market remuneration rates. \cite{Hays_2026, NoFluffJobs_2025}.
+
+\begin{longtable}{|L{5.0cm}|c|c|r|r|}
+\caption{Category A -- project team (Variant II, PLN net)}
+\label{tab:capex_zespol} \\
+\hline
+\rowcolor{gray!20}\textbf{Role} & \textbf{People} & \textbf{PM} & \textbf{Rate/month} & \textbf{Cost} \\
+\hline
+\endfirsthead
+\hline
+\rowcolor{gray!20}\textbf{Role} & \textbf{People} & \textbf{PM} & \textbf{Rate/month} & \textbf{Cost} \\
+\hline
+\endhead
+Project manager & 1 & 16 & 26,000 & 416,000 \\
+\hline
+Software architect & 1 & 8 & 35,000 & 280,000 \\
+\hline
+Tech Lead / Senior Backend & 1 & 16 & 31,000 & 496,000 \\
+\hline
+Backend developer & 3 & 42 & 24,000 & 1,008,000 \\
+\hline
+Frontend developer & 2 & 26 & 23,000 & 598,000 \\
+\hline
+Mobile developer & 1 & 12 & 25,000 & 300,000 \\
+\hline
+UX/UI designer & 1 & 10 & 23,000 & 230,000 \\
+\hline
+DevOps engineer & 2 & 28 & 30,000 & 840,000 \\
+\hline
+Security engineer & 1 & 9 & 34,000 & 306,000 \\
+\hline
+QA engineer & 2 & 28 & 21,000 & 588,000 \\
+\hline
+Business analyst & 1 & 10 & 24,000 & 240,000 \\
+\hline
+\rowcolor{gray!10}\textbf{Total category A} & & & & \textbf{5,302,000} \\
+\hline
+\end{longtable}
+
+\begin{longtable}{|L{6.6cm}|r|r|r|}
+\caption{Category C -- hardware and end-user devices (Variant II, PLN net)}
+\label{tab:capex_sprzet} \\
+\hline
+\rowcolor{gray!20}\textbf{Item} & \textbf{Quantity} & \textbf{Unit price} & \textbf{Value} \\
+\hline
+\endfirsthead
+\hline 
+\rowcolor{gray!20}\textbf{Item} & \textbf{Quantity} & \textbf{Unit price} & \textbf{Value} \\
+\hline
+\endhead
+Enterprise-class medical tablet & 810 & 4,200 & 3,402,000 \\
+\hline
+Tablet accessories & 810 & 350 & 283,500 \\
+\hline
+Computer workstation (AiO) & 680 & 3,800 & 2,584,000 \\
+\hline
+Proximity card reader (2FA) & 2,000 & 180 & 360,000 \\
+\hline
+Wristband / label printer & 150 & 1,600 & 240,000 \\
+\hline
+Barcode scanner & 400 & 420 & 168,000 \\
+\hline
+Wi-Fi 6 access point & 680 & 1,300 & 884,000 \\
+\hline
+48-port PoE access switch & 125 & 6,500 & 812,500 \\
+\hline
+NGFW firewall (HA pair) & 2 & 120,000 & 240,000 \\
+\hline
+LAN cabling upgrade & 1 & 1,050,000 & 1,050,000 \\
+\hline
+Production scanner for digitization & 12 & 28,000 & 336,000 \\
+\hline
+UPS / guaranteed power & 1 & 110,000 & 110,000 \\
+\hline
+Administrative workstations & 1 & 40,000 & 40,000 \\
+\hline
+\rowcolor{gray!10}\textbf{Total category C} & & & \textbf{10,510,000} \\
+\hline
+\end{longtable}
+
+The remaining categories (B, D--H) are summarized collectively in table~\ref{tab:capex_suma}; their component items are: B -- network configuration, approximate cloud consumption during the build and load-testing phase; D -- ALM, OCR, EDR tools, certificates; E -- digitization of active documentation (9 million pages $\times$ PLN 0.15), ETL migration, validation; F -- P1, HL7/FHIR (LIS), DICOM/PACS, SMS gateway/Profil Zaufany integrations; G -- DPIA, penetration tests, ISO/IEC 27001 certification, GDPR audit, SIEM/SOC; H -- training for 2,600 people, pilot, hypercare, change management, documentation.
+
+\begin{table}[h]
+\centering
+\small
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{|L{10.5cm}|r|}
+\hline
+\rowcolor{gray!20}\textbf{Category} & \textbf{Cost} \\
+\hline
+A. Project team and software development & 5,302,000 \\
+\hline
+B. Cloud infrastructure -- launch & 960,000 \\
+\hline
+C. Hardware and end-user devices & 10,510,000 \\
+\hline
+D. Licences and software & 490,000 \\
+\hline
+E. Documentation migration and digitization & 1,730,000 \\
+\hline
+F. Integrations with external systems & 1,080,000 \\
+\hline
+G. Security and compliance & 730,000 \\
+\hline
+H. Deployment, training and change management & 1,550,000 \\
+\hline
+\rowcolor{gray!10}\textbf{Base technical cost (cost base)} & \textbf{22,352,000} \\
+\hline
+Technical risk reserve (approx.~11\%) & 2,459,000 \\
+\hline
+Management reserve (unknown-unknowns, approx.~11\%) & 2,459,000 \\
+\hline
+\rowcolor{gray!20}\textbf{CAPEX -- cost of delivery} & \textbf{27,270,000} \\
+\hline
+\end{tabular}
+\caption{Summary of Variant II CAPEX with a two-layer reserve (PLN net)}
+\label{tab:capex_suma}
+\end{table}
+
+The two-layer reserve structure separates known risks from management risks. The technical reserve covers typical deviations in equipment, integration, digitization and team labour costs, while the management reserve covers events that are difficult to quantify unambiguously at the cost estimate stage, such as regulatory changes, delays on the stakeholder side or scope extensions required during acceptance.
+
+
+\section{OPEX Variant II -- detailed}
+
+\subsection{Azure cloud infrastructure}
+
+\begin{longtable}{|L{10.5cm}|r|}
+\caption{Monthly cost of Azure infrastructure (Variant II, PLN net)}
+\label{tab:opex_chmura} \\
+\hline
+\rowcolor{gray!20}\textbf{Service} & \textbf{Cost/month} \\
+\hline
+\endfirsthead
+\hline
+\rowcolor{gray!20}\textbf{Service} & \textbf{Cost/month} \\
+\hline
+\endhead
+AKS cluster (compute, reserved + autoscaling) & 34,000 \\
+\hline
+Azure Database for PostgreSQL (HA, replicas) & 22,000 \\
+\hline
+Azure Cache for Redis & 5,000 \\
+\hline
+Blob Storage -- hot tier (20 TB) & 7,000 \\
+\hline
+Blob Storage -- archive (20-year retention) & 11,000 \\
+\hline
+Azure Backup (geo-redundant) & 8,000 \\
+\hline
+DR environment (West Europe, warm standby) & 14,000 \\
+\hline
+ExpressRoute + VPN & 10,000 \\
+\hline
+Data transfer / egress & 4,000 \\
+\hline
+Front Door + WAF (patient portal) & 3,500 \\
+\hline
+Defender for Cloud + Sentinel (SIEM) & 10,000 \\
+\hline
+Azure Monitor / Log Analytics & 6,000 \\
+\hline
+\rowcolor{gray!10}\textbf{Total monthly / annually} & \textbf{134,500 / 1,614,000} \\
+\hline
+\end{longtable}
+
+\subsection{Maintenance, support and replacement}
+
+\begin{table}[h]
+\centering
+\small
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{|L{10.5cm}|r|}
+\hline
+\rowcolor{gray!20}\textbf{Item} & \textbf{Cost/year} \\
+\hline
+Azure cloud infrastructure & 1,614,000 \\
+\hline
+SMS gateway and notifications & 110,000 \\
+\hline
+Licences and subscriptions (monitoring, EDR, security) & 360,000 \\
+\hline
+Maintenance and development team (6 FTE) & 1,584,000 \\
+\hline
+Helpdesk and user support (L1/L2) & 780,000 \\
+\hline
+Hardware vendor support and warranties & 260,000 \\
+\hline
+Periodic audits, pentests, ISO supervision & 160,000 \\
+\hline
+Fleet replacement reserve (buffer, replacement, losses) & 1,080,000 \\
+\hline
+\rowcolor{gray!10}\textbf{OPEX subtotal} & \textbf{5,948,000} \\
+\hline
+Risk reserve (10\%) & 595,000 \\
+\hline
+\rowcolor{gray!20}\textbf{Total OPEX / year} & \textbf{6,543,000} \\
+\hline
+\end{tabular}
+\caption{Annual OPEX of Variant II (PLN net)}
+\label{tab:opex_suma}
+\end{table}
+
+\section{Organizational adoption costs}
+
+In hospitals, system adoption costs (so-called hidden costs) typically account for 10--25\% of the total implementation cost \cite{Deloitte_DigitalHealth_2024}. Omitting them understates the actual project cost. They are predominantly \textbf{opportunity costs} rather than cash expenditure to the contractor, which is why they are presented separately.
+
+\begin{table}[h]
+\centering
+\small
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{|L{8.0cm}|r|r|r|}
+\hline
+\rowcolor{gray!20}\textbf{Component} & \textbf{Pessimistic} & \textbf{Base} & \textbf{Optimistic} \\
+\hline
+Parallel paper + EMR work (dual documentation) & 3,300,000 & 2,200,000 & 1,720,000 \\
+\hline
+Learning curve / drop in work pace & 2,950,000 & 1,950,000 & 1,520,000 \\
+\hline
+Drop in patient service throughput & 2,050,000 & 1,390,000 & 1,080,000 \\
+\hline
+\rowcolor{gray!10}\textbf{Total adoption cost (one-off)} & \textbf{8,300,000} & \textbf{5,540,000} & \textbf{4,320,000} \\
+\hline
+\end{tabular}
+\caption{Organizational adoption costs of Variant II (PLN, opportunity cost)}
+\label{tab:adopcja}
+\end{table}
+
+These costs are limited by the measures planned in chapter~\ref{chapter:implementation}: phased implementation (pilot), a "super-user" programme, group-differentiated training and 3-month hypercare. Due to their nature (opportunity cost rather than cash expenditure), adoption costs are shown separately and were not included in CAPEX or in the contract price.
+
+\section{Commercial model and contract price}
+
+The technical cost estimate (table~\ref{tab:capex_suma}) is the \textbf{cost of delivery} on the contractor's side, not the market price of the contract. The contract price that the hospital would pay for a "turnkey" implementation additionally includes an implementation overhead and the vendor's margin.
+
+\begin{table}[h]
+\centering
+\small
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{|L{8.5cm}|r|}
+\hline
+\rowcolor{gray!20}\textbf{Level} & \textbf{Value} \\
+\hline
+Cost of delivery (with reserve) & 27,270,000 \\
+\hline
++ Implementation overhead (8\%) & 2,181,600 \\
+\hline
+Adjusted cost & 29,451,600 \\
+\hline
++ Vendor margin (18\%) & 5,301,288 \\
+\hline
+\rowcolor{gray!20}\textbf{Contract price (net)} & \textbf{34,752,888} \\
+\hline
+Contract price (gross, VAT 23\%) & 42,746,052 \\
+\hline
+\end{tabular}
+\caption{Commercial model -- transition from cost of delivery to contract price (Variant II)}
+\label{tab:komercyjny}
+\end{table}
+
+\section{Scenarios and sensitivity analysis}
+
+\subsection{Base / optimistic / worst scenarios}
+
+In accordance with the accuracy class of the estimate (AACE class~3 \cite{AACE_18R97}), three cost scenarios for Variant II are presented.
+
+\begin{table}[h]
+\centering
+\small
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{|L{5.5cm}|r|r|r|}
+\hline
+\rowcolor{gray!20}\textbf{Item} & \textbf{Optimistic ($-20\%$)} & \textbf{Base} & \textbf{Pessimistic ($+30\%$)} \\
+\hline
+CAPEX (cost of delivery) & 21,816,000 & 27,270,000 & 35,451,000 \\
+\hline
+OPEX / year & 5,234,000 & 6,543,000 & 8,506,000 \\
+\hline
+CAPEX + OPEX 5 years & 47,988,000 & 59,985,000 & 77,981,000 \\
+\hline
+\end{tabular}
+\caption{Cost scenarios of Variant II (PLN net)}
+\label{tab:scenariusze}
+\end{table}
+
+\subsection{Sensitivity analysis (tornado)}
+
+The greatest impact on total cost comes from (in descending order):
+
+\begin{enumerate}
+    \item hardware fleet cost (category C) -- sensitive to the number of tablets and market prices,
+    \item team cost (category A) -- sensitive to duration and B2B rates,
+    \item cloud cost (OPEX) -- sensitive to data volume and peak load,
+    \item P1 integration risk (category F) -- sensitive to changes in Centre for e-Health requirements.
+\end{enumerate}
+
+\subsection{Risk scenario matrix}
+
+\begin{table}[h]
+\centering
+\small
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{|L{6.5cm}|L{4.5cm}|r|}
+\hline
+\rowcolor{gray!20}\textbf{Scenario} & \textbf{Consequence} & \textbf{Impact on TCO} \\
+\hline
++20\% patients / data volume & increase in storage, compute, licences & +6--9\% \\
+\hline
++30\% cloud consumption (peak) & increase in cloud OPEX & +3--5\% \\
+\hline
+6-month implementation delay & longer team cost + adoption & +5--8\% \\
+\hline
+12-month implementation delay & as above + regulatory risk & +10--15\% \\
+\hline
+Change in P1 requirements & integration rebuild & +2--4\% \\
+\hline
+\end{tabular}
+\caption{Risk scenario matrix and their impact on TCO}
+\label{tab:macierz_ryzyka}
+\end{table}
+
+\section{TCO and unit indicators}
+\label{sec:wskazniki}
+
+\begin{table}[h]
+\centering
+\small
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{|L{8.5cm}|r|}
+\hline
+\rowcolor{gray!20}\textbf{Indicator (Variant II)} & \textbf{Value} \\
+\hline
+CAPEX (cost of delivery) & 27,270,000 \\
+\hline
+Contract price (net) & 34,752,888 \\
+\hline
+5-year TCO (contract price + OPEX) & 67,467,888 \\
+\hline
+CAPEX per bed & 23,713 \\
+\hline
+5-year TCO per bed (hospital perspective) & 58,668 \\
+\hline
+CAPEX per staff account & 10,488 \\
+\hline
+\end{tabular}
+\caption{Unit indicators of Variant II (PLN net)}
+\label{tab:wskazniki}
+\end{table}
+
+\paragraph{Note on TCO.} The row "cost of delivery + OPEX" reflects the contractor's perspective; the row "contract price + OPEX" reflects the actual hospital expenditure over a 5-year horizon (net, excluding organizational adoption costs).
+
+\section{Payment schedule and funding sources}
+
+Payments were linked to milestones and to the percentage of the \textbf{contract price net} (table~\ref{tab:komercyjny}), which the hospital pays to the contractor. OPEX (table~\ref{tab:opex_suma}) is settled separately, on an annual cycle, starting from the production year.
+
+\begin{table}[h]
+\centering
+\small
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{|L{5.5cm}|L{5.5cm}|c|}
+\hline
+\rowcolor{gray!20}\textbf{Milestone} & \textbf{Accepted delivery} & \textbf{\% of contract price} \\
+\hline
+M0 -- contract signing, initiation & team mobilization, project plan & 10\% \\
+\hline
+M1 -- architecture and development environment & architecture documentation, Azure dev/test & 15\% \\
+\hline
+M2 -- network infrastructure\newline{\small (in parallel with M1--M3)} & LAN cabling, switches, Wi-Fi APs, firewall & 15\% \\
+\hline
+M3 -- software UAT acceptance & system + P1/LIS/PACS integrations accepted & 25\% \\
+\hline
+M4 -- end-user device delivery & tablets, workstations, printers, readers, scanners & 20\% \\
+\hline
+M5 -- pilot and digitization start & 3 departments, digitization launched & 10\% \\
+\hline
+M6 -- go-live and end of hypercare & final acceptance of the entire scope & 5\% \\
+\hline
+\rowcolor{gray!10}\textbf{Total} & & \textbf{100\%} \\
+\hline
+\end{tabular}
+\caption{Payment schedule linked to milestones (\% of contract price net)}
+\label{tab:platnosci}
+\end{table}
+
+The recommended financing structure combines the hospital's own funds with external funding: the National Recovery Plan (healthcare digitalization component), EU funds (FENG, regional programmes), Ministry of Health grants and the Centre for e-Health.
+
+\section{Risk reserve and cost assumptions}
+
+The main sources of cost risk are external integrations (especially P1), regulatory changes, implementation delays and the complexity of data migration. A two-layer CAPEX reserve was adopted (technical reserve + management reserve, approximately 22\% in total) and a 10\% OPEX reserve. The cost estimate is valid under the following assumptions: 2026 market prices, stability of cloud provider pricing, availability of a team with the assumed competencies, no scope changes (Variant II) and timely provision of data and environments by the hospital. A significant change in assumptions will require recalculation and may significantly affect the valuation.
+
+\section{Summary and recommendation}
+\label{sec:rekomendacja}
+
+For the recommended Variant II, the cost of delivery amounts to \textbf{PLN 27.27 million net}, the contract price to \textbf{approximately PLN 34.75 million net}, OPEX to \textbf{PLN 6.54 million/year}, the 5-year TCO to \textbf{approximately PLN 67.5 million net}, and the organizational adoption costs (outside the contractor agreement) to \textbf{approximately PLN 5.5 million} in the base scenario. The adopted budget includes a conservative reserve for technical and management risks, and the TCO per bed indicator is in the lower part of the benchmark range.
+
+The comparison of variants shows that Variant~I, although the cheapest, does not meet the key requirements (no offline mode, no P1 integration and no full audit), while Variant~III is redundant in relation to the facility's current needs and burdened with additional requirements (AI Act). \textbf{Variant~II represents the cost-functional optimum} and is recommended as the target solution and was selected by the client.

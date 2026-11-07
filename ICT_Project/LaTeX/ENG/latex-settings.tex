@@ -1,40 +1,40 @@
 %***************************************************************************************************
 
-% Podstawowe ustawienia języka, według którego formatowany będzie dokument
+% Basic language settings used to format the document
 %\usepackage[english,polish]{babel}
 % \usepackage[english]{babel}
-\usepackage[MeX]{polski}
+\usepackage[english]{babel}
 
-% Pakiet babel dla polskiego języka powoduje konflikt z pakietem amssymb.
-% Polecenie '\lll' definiują oba pakiety - porządana jest druga definicja.
+% The babel package for Polish causes a conflict with the amssymb package.
+% The '\lll' command is defined by both packages - the second definition is required.
 % \let\lll\undefined
 
-% W przypadku wielojęzykowości ustawia główny język dokumentu
+% For multilingual documents, sets the main document language
 % \selectlanguage{english}
 
-% Kodowanie dokumentu
+% Document encoding
 \usepackage[utf8]{inputenc} 
 % \usepackage[T1]{fontenc} 
 
-% Dowolny rozmiar czcionek, kodowanie znaków
+% Any font size, character encoding
 % \usepackage{lmodern}
 
-% Polskie wcięcia akapitów
+% Paragraph indentation
 \usepackage{indentfirst}
 
-% Polskie formatowanie typograficzne
+% Typographic formatting
 \frenchspacing
 
-% Zapewnia liczne usprawnienia wyświetlania i organizacji matematycznych formuł. 
+% Provides numerous improvements for displaying and organising mathematical formulas.
 \usepackage{amsmath}
 
-% Wprowadza rozszerzony zestaw symboli m.in. \leadsto
+% Introduces an extended set of symbols, including \leadsto
 \usepackage{amssymb}
 
-% Dodatkowa, ,,kręcona'' czcionka matematyczna
+% Additional "script" mathematical font
 \usepackage{mathrsfs}
 
-% Dodatkowe wsparcie dla środowiska mathbb, które nie wspiera domyślnie cyfr (\mathbb{})
+% Additional support for the mathbb environment, which does not support digits by default (\mathbb{})
 %\usepackage{bbold}
 
 % Fixes/improves amsmath
@@ -45,33 +45,33 @@
 
 
 % ***************************************************************************************************
-% Kolory  
+% Colours
 % ***************************************************************************************************
 
-% Umożliwia kolorowanie poszczególnych komórek tabeli
+% Enables colouring of individual table cells
 \usepackage[table, svgnames]{xcolor}% http://ctan.org/pkg/
 
-% Umożliwia łatwą zmianę koloru linii w tabeli
+% Enables easy changing of table line colours
 \usepackage{tabu}
 
 \usepackage{longtable}
 
-% Umożliwia rozszerzoną kontrolę nad kolorami.
+% Provides extended control over colours.
 \usepackage{xcolor}
 
-% Definicje kolorów
+% Colour definitions
 \definecolor{lgray}{HTML}{9F9F9F}
 \definecolor{dgray}{HTML}{5F5F5F}
 
 % ***************************************************************************************************
-% Algorytmy 
+% Algorithms
 % ***************************************************************************************************
 
-% Udostępnia środowisko do konstruowania pseudokodów
+% Provides an environment for constructing pseudocode
 \usepackage[ruled,vlined,linesnumbered,longend,algochapter]{algorithm2e}
-\renewcommand{\algorithmcfname}{Algorytm}
+\renewcommand{\algorithmcfname}{Algorithm}
 
-% Zamiana nazwy środowiska z domyślnej "Algorithm X" na "Pseudokod X"
+% Changes the environment name from the default "Algorithm X" to "Pseudocode X"
 \newenvironment{algorithm-custom}[1][htb]{ 
 	% \renewcommand{\algorithmcfname}{Algorithm}
 	\begin{algorithm}[#1]%
@@ -79,203 +79,203 @@
 \end{algorithm}
 }
 
-% Zmiana rozmiaru komentarzy
+% Changes the comment size
 \newcommand\algcomment[1]{
 	\footnotesize{#1}
 }
 
-% Ustawienie zadanego stylu dla komentarzy
+% Sets the specified style for comments
 \SetCommentSty{algcomment}
 
-% Wyśrodkowana tylda
+% Centred tilde
 \usepackage{textcomp}%
 \newcommand{\textapprox}{\raisebox{0.5ex}{\texttildelow}}
 
-% Listowanie kodów źródłowych
+% Source code listing
 \usepackage{listings}
 \usepackage{xcolor}
 
-% Definicja stylu dla kodu Python
+% Style definition for Python code
 \lstdefinestyle{pythonstyle}{
     language=Python,
-    backgroundcolor=\color{gray!10},   % jasnoszare tło
-    basicstyle=\ttfamily\small,        % czcionka monospaced, rozmiar small
-    keywordstyle=\color{blue}\bfseries, % słowa kluczowe w niebieskim
-    commentstyle=\color{green!60!black}\itshape, % komentarze w zielonym italics
-    stringstyle=\color{red!70!black},  % ciągi znaków w czerwonym
-    numbers=left,                      % numeracja wierszy po lewej
-    numberstyle=\tiny\color{gray},     % styl numerów linii
-    stepnumber=1,                       % numeruj każdą linię
-    numbersep=8pt,                      % odstęp numeracji od kodu
-    showstringspaces=false,             % nie pokazuj spacji w stringach
-    tabsize=4,                          % tabulacja = 4 spacje
-    breaklines=true,                    % łamanie długich linii
-    breakatwhitespace=true,             % łam linie w białych znakach
-    frame=single,                        % ramka wokół kodu
-    rulecolor=\color{black},            % kolor ramki
-    captionpos=b                        % podpis pod kodem
+    backgroundcolor=\color{gray!10},   % light grey background
+    basicstyle=\ttfamily\small,        % monospaced font, small size
+    keywordstyle=\color{blue}\bfseries, % keywords in blue
+    commentstyle=\color{green!60!black}\itshape, % comments in green italics
+    stringstyle=\color{red!70!black},  % strings in red
+    numbers=left,                      % line numbering on the left
+    numberstyle=\tiny\color{gray},     % line number style
+    stepnumber=1,                       % number every line
+    numbersep=8pt,                      % distance between numbers and code
+    showstringspaces=false,             % do not show spaces in strings
+    tabsize=4,                          % tab = 4 spaces
+    breaklines=true,                    % wrap long lines
+    breakatwhitespace=true,             % break lines at whitespace
+    frame=single,                        % frame around the code
+    rulecolor=\color{black},            % frame colour
+    captionpos=b                        % caption below the code
 }
-\renewcommand{\lstlistingname}{Kod źródłowy} % Polska nazwa listingu
-% \renewcommand{\lstlistingname}{Source code} % Polska nazwa listingu
+\renewcommand{\lstlistingname}{Source code} % Listing name
+% \renewcommand{\lstlistingname}{Source code} % Listing name
 
 % ***************************************************************************************************
-% Marginesy 
+% Margins
 % ***************************************************************************************************
 
-% Ustawienia rozmiarów stron i ich marginesów
+% Page size and margin settings
 \usepackage[headheight=18pt, top=25mm, bottom=25mm, left=25mm, right=25mm]{geometry}
 
-% Usunięcie górnego marginesu dla środowisk
+% Removes the top margin for environments
 \makeatletter
 \setlength\@fptop{0\p@}	
 \makeatother
 
 % ***************************************************************************************************
-% Styl 
+% Style
 % ***************************************************************************************************
 
-% Definiuje środowisko 'titlingpage', które zapewnia pełną kontrolę nad układem strony tytułowej.
+% Defines the 'titlingpage' environment, which provides full control over the title page layout.
 \usepackage{titling}
 
-% Umożliwia modyfikowanie stylu spisu treści
+% Enables modification of the table of contents style
 % \usepackage[subfigure]{tocloft}	
 \usepackage{tocloft}	
 
 \tocloftpagestyle{tableOfContentStyle}
 
-% Definiowanie własnych stylów nagłówków i/lub stopek
+% Defining custom header and/or footer styles
 \usepackage{fancyhdr}
 
-% Domyślny styl dla pracy 
+% Default style for the document
 \fancypagestyle{custom}{
-	\fancyhf{}									% wyczyść stopki i nagłówki
-	\fancyhead[RO]{								% Prawy, nieparzysty nagłówek
-		\hrulefill \hspace{16pt} \large Rozdział \thechapter
+	\fancyhf{}									% clear footers and headers
+	\fancyhead[RO]{								% Right, odd header
+		\hrulefill \hspace{16pt} \large Chapter \thechapter
         %\hrulefill \hspace{16pt} \large Chapter \thechapter
 		\put(-471.5,5.5){%
 			\makebox(0,0)[l]{%
-                \small Politechnika Wrocławska
+                \small Wrocław University of Science and Technology
 				%\small Wrocław University of Science and Technology
 			}
 		}
 	}
-	\fancyhead[LE]{								% Lewy, parzysty nagłówek
-        \large Rozdział \thechapter \hspace{16pt} \hrulefill 
+	\fancyhead[LE]{								% Left, even header
+        \large Chapter \thechapter \hspace{16pt} \hrulefill 
 		%\large Chapter \thechapter \hspace{16pt} \hrulefill 
 		%\put(-267,5.5){%
         \put(-193,5.5){
 			\makebox(0,0)[l]{%
-                \small Wydział Informatyki i Telekomunikacji
+                \small Faculty of Information and Communication Technology
 				%\small Faculty of Information and Communication Technology
 			}
 		}
 	}
-	\fancyfoot[LE,RO]{							% Stopki
+	\fancyfoot[LE,RO]{							% Footers
 		\thepage
 	}
-	\renewcommand{\headrulewidth}{0pt}			% Grubość linii w nagłówku
-	\renewcommand{\footrulewidth}{0.2pt}		% Grubość linii w stopce
+	\renewcommand{\headrulewidth}{0pt}			% Header line width
+	\renewcommand{\footrulewidth}{0.2pt}		% Footer line width
 }
 
-% Domyślny styl dla List of Figures
+% Default style for the List of Figures
 \fancypagestyle{ListofFiguresStyle}{
-	\fancyhf{}									% wyczyść stopki i nagłówki
-	\fancyhead[RO]{								% Prawy, nieparzysty nagłówek
-		\hrulefill \hspace{16pt} \large Spis rysunków
+	\fancyhf{}									% clear footers and headers
+	\fancyhead[RO]{								% Right, odd header
+		\hrulefill \hspace{16pt} \large List of Figures
         %\hrulefill \hspace{16pt} \large List of Figures
 		\put(-471.5,5.5){%
 			\makebox(0,0)[l]{%
-                \small Politechnika Wrocławska
+                \small Wrocław University of Science and Technology
 				%\small Wrocław University of Science and Technology
 			}
 		}
 	}
-	\fancyhead[LE]{								% Lewy, parzysty nagłówek
-		\large Spis rysunków \hspace{16pt} \hrulefill 
+	\fancyhead[LE]{								% Left, even header
+		\large List of Figures \hspace{16pt} \hrulefill 
         %\large List of Figures \hspace{16pt} \hrulefill 
 		%\put(-267,5.5){%
         \put(-193,5.5){
 			\makebox(0,0)[l]{%
-                \small Wydział Informatyki i Telekomunikacji
+                \small Faculty of Information and Communication Technology
 				%\small Faculty of Information and Communication Technology
 			}
 		}
 	}
-	\fancyfoot[LE,RO]{							% Stopki
+	\fancyfoot[LE,RO]{							% Footers
 		\thepage
 	}
-	\renewcommand{\headrulewidth}{0pt}			% Grubość linii w nagłówku
-	\renewcommand{\footrulewidth}{0.2pt}		% Grubość linii w stopce
+	\renewcommand{\headrulewidth}{0pt}			% Header line width
+	\renewcommand{\footrulewidth}{0.2pt}		% Footer line width
 }
 
-% Domyślny styl dla List of Tables
+% Default style for the List of Tables
 \fancypagestyle{ListofTablesStyle}{
-	\fancyhf{}									% wyczyść stopki i nagłówki
-	\fancyhead[RO]{								% Prawy, nieparzysty nagłówek
-		\hrulefill \hspace{16pt} \large Spis tabel
+	\fancyhf{}									% clear footers and headers
+	\fancyhead[RO]{								% Right, odd header
+		\hrulefill \hspace{16pt} \large List of Tables
         % \hrulefill \hspace{16pt} \large List of Tables
 		\put(-471.5,5.5){%
 			\makebox(0,0)[l]{%
-                \small Politechnika Wrocławska
+                \small Wrocław University of Science and Technology
 				%\small Wrocław University of Science and Technology
 			}
 		}
 	}
-	\fancyhead[LE]{								% Lewy, parzysty nagłówek
-		\large Spis tabel \hspace{16pt} \hrulefill 
+	\fancyhead[LE]{								% Left, even header
+		\large List of Tables \hspace{16pt} \hrulefill 
         % \large List of Tables \hspace{16pt} \hrulefill 
 		%\put(-267,5.5){%
         \put(-193,5.5){
 			\makebox(0,0)[l]{%
-                \small Wydział Informatyki i Telekomunikacji
+                \small Faculty of Information and Communication Technology
 				%\small Faculty of Information and Communication Technology
 			}
 		}
 	}
-	\fancyfoot[LE,RO]{							% Stopki
+	\fancyfoot[LE,RO]{							% Footers
 		\thepage
 	}
-	\renewcommand{\headrulewidth}{0pt}			% Grubość linii w nagłówku
-	\renewcommand{\footrulewidth}{0.2pt}		% Grubość linii w stopce
+	\renewcommand{\headrulewidth}{0pt}			% Header line width
+	\renewcommand{\footrulewidth}{0.2pt}		% Footer line width
 }
 
 
-% Domyślny styl dla bibliografii
+% Default style for the bibliography
 \fancypagestyle{bibliographyStyle}{
-	\fancyhf{}									% wyczyść stopki i nagłówki
-	\fancyhead[RO]{								% Prawy, nieparzysty nagłówek
-		\hrulefill \hspace{16pt} \large Bibliografia
+	\fancyhf{}									% clear footers and headers
+	\fancyhead[RO]{								% Right, odd header
+		\hrulefill \hspace{16pt} \large Bibliography
         % \hrulefill \hspace{16pt} \large Bibliography
 		\put(-471.5,5.5){%
 			\makebox(0,0)[l]{%
-				\small Politechnika Wrocławska
+				\small Wrocław University of Science and Technology
 				%\small Wrocław University of Science and Technology
 			}
 		}
 	}
-	\fancyhead[LE]{								% Lewy, parzysty nagłówek
-		\large Bibliografia \hspace{16pt} \hrulefill 
+	\fancyhead[LE]{								% Left, even header
+		\large Bibliography \hspace{16pt} \hrulefill 
         % \large Bibliography \hspace{16pt} \hrulefill 
 		%\put(-267,5.5){%
         \put(-193,5.5){
 			\makebox(0,0)[l]{%
-                \small Wydział Informatyki i Telekomunikacji
+				\small Faculty of Information and Communication Technology
 				%\small Faculty of Information and Communication Technology
 			}
 		}
 	}
-	\fancyfoot[LE,RO]{							% Stopki
+	\fancyfoot[LE,RO]{							% Footers
 		\thepage
 	}
-	\renewcommand{\headrulewidth}{0pt}			% Grubość linii w nagłówku
-	\renewcommand{\footrulewidth}{0.2pt}		% Grubość linii w stopce
+	\renewcommand{\headrulewidth}{0pt}			% Header line width
+	\renewcommand{\footrulewidth}{0.2pt}		% Footer line width
 }
 
-% Domyślny styl dla dodatków
+% Default style for appendices
 \fancypagestyle{appendixStyle}{
-	\fancyhf{}									% wyczyść stopki i nagłówki
-	\fancyhead[RO]{								% Prawy, nieparzysty nagłówek
-		\hrulefill \hspace{16pt} \large Dodatek \thechapter
+	\fancyhf{}									% clear footers and headers
+	\fancyhead[RO]{								% Right, odd header
+		\hrulefill \hspace{16pt} \large Appendix \thechapter
         % \hrulefill \hspace{16pt} \large Appendix \thechapter
 		\put(-472.1, 12.1){%
 			\makebox(0,0)[l]{%
@@ -284,13 +284,13 @@
 		}
 		\put(-443,5.5){%
 			\makebox(0,0)[l]{%
-				\small Politechnika Wrocławska
+				\small Wrocław University of Science and Technology
 				%\small Wrocław University of Science and Technology
 			}
 		}
 	}
-	\fancyhead[LE]{								% Lewy, parzysty nagłówek
-		\large Dodatek \thechapter \hspace{16pt} \hrulefill 
+	\fancyhead[LE]{								% Left, even header
+		\large Appendix \thechapter \hspace{16pt} \hrulefill 
         %\large Appendix \thechapter \hspace{16pt} \hrulefill 
 		\put(-22, 12.1){%
 			\makebox(0,0)[l]{%
@@ -300,20 +300,20 @@
 		%\put(-220,5.5){%
 		\put(-146,5.5){
 			\makebox(0,0)[l]{%
-                \small Wydział Informatyki i Telekomunikacji
+                \small Faculty of Information and Communication Technology
 				%\small Faculty of Information and Communication Technology
 			}
 		}
 	}
-	\fancyfoot[LE,RO]{							% Stopki
+	\fancyfoot[LE,RO]{							% Footers
 		\thepage
 	}
-	\renewcommand{\headrulewidth}{0pt}			% Grubość linii w nagłówku
-	\renewcommand{\footrulewidth}{0.2pt}		% Grubość linii w stopce
+	\renewcommand{\headrulewidth}{0pt}			% Header line width
+	\renewcommand{\footrulewidth}{0.2pt}		% Footer line width
 }
 
 
-% Osobny styl dla stron zaczynających rozdział/spis treści itd. (domyślnie formatowane jako "plain")
+% Separate style for pages beginning a chapter/table of contents etc. (formatted as "plain" by default)
 \fancypagestyle{chapterBeginStyle}{
 	\fancyhf{}%
 	\fancyfoot[LE,RO]{
@@ -323,7 +323,7 @@
 	\renewcommand{\footrulewidth}{0.2pt}
 }
 
-% Styl dla pozostałych stron spisu treści
+% Style for the remaining table of contents pages
 \fancypagestyle{tableOfContentStyle}{
 	\fancyhf{}%
 	\fancyfoot[LE,RO]{
@@ -333,11 +333,11 @@
 	\renewcommand{\footrulewidth}{0.2pt}
 }
 
-% Formatowanie tytułów rozdziałów i/lub sekcji
+% Formatting of chapter and/or section titles
 \usepackage{titlesec}
 
 
-% Formatowanie tytułów rozdziałów
+% Formatting of chapter titles
 \titleformat{\chapter}[hang]
 {\normalfont\Huge\bfseries}
 {\thechapter.}
@@ -345,7 +345,7 @@
 {}
 \titlespacing*{\chapter}{0pt}{-35pt}{18pt}
 
-% Formatowanie tytułów sekcji
+% Formatting of section titles
 \titleformat{\section}[hang]
 {\normalfont\Large\bfseries}											
 {\thesection.}
@@ -357,136 +357,136 @@
 {\thesubsection.}
 {1ex}
 {} 
-% formatowanie elementów przed modyfikowanym tytułem
+% formatting of elements before the modified title
 
 
 % ***************************************************************************************************
-% Linki
+% Links
 % ***************************************************************************************************
 
-% Umożliwia wstawianie hiperłączy do dokumentu
-\usepackage{hyperref}							% Aktywuje linki
+% Enables insertion of hyperlinks into the document
+\usepackage{hyperref}							% Activates links
 
 \hypersetup{
-	colorlinks	=	true,					% Koloruje tekst zamiast tworzyć ramki.
-	linkcolor	=	blue,					% Kolory: referencji,
-    citecolor	=	blue,					% cytowań,
-	urlcolor	=	blue					% hiperlinków.
+	colorlinks	=	true,					% Colours text instead of creating frames.
+	linkcolor	=	blue,					% Colours: references,
+    citecolor	=	blue,					% citations,
+	urlcolor	=	blue					% hyperlinks.
 }
 
-% Do stworzenia hiperłączy zostanie użyta ta sama (same) czcionka co dla reszty dokumentu
+% The same font(s) as the rest of the document will be used to create hyperlinks
 \urlstyle{same}
 
 
 % ***************************************************************************************************
-% Linki
+% Links
 % ***************************************************************************************************
 
-% Umożliwia zdefiniowanie własnego stylu wyliczeniowego
+% Enables defining a custom list style
 \usepackage{enumitem}
 
-% Nowa lista numerowana z trzema poziomami
+% New numbered list with three levels
 \newlist{myitemize}{itemize}{3}
 
-% Definicja wyglądu znacznika pierwszego poziomu
+% Definition of the first-level marker appearance
 \setlist[myitemize,1]{
 	label		=	\textbullet,
 	leftmargin	=	4mm}
 
-% Definicja wyglądu znacznika drugiego poziomu
+% Definition of the second-level marker appearance
 \setlist[myitemize,2]{
 	label		=	$\diamond$,
 	leftmargin	=	8mm}
 
-% Definicja wyglądu znacznika trzeciego poziomu
+% Definition of the third-level marker appearance
 \setlist[myitemize,3]{
 	label		=	$\diamond$,
 	leftmargin	=	12mm
 }
 
 % ***************************************************************************************************
-% Inne pakiety
+% Other packages
 % ***************************************************************************************************
 
-% Dołączanie rysunków
+% Including figures
 \usepackage{graphicx}
 
-% Figury i przypisy
+% Figures and captions
 \usepackage{caption}
 \usepackage{subcaption}
 
-% Umożliwia tworzenie przypisów wewnątrz środowisk
+% Enables creating footnotes inside environments
 \usepackage{footnote}
 
-% Umożliwia tworzenie struktur katalogów
+% Enables creating directory structures
 \usepackage{dirtree}
 
-% Rozciąganie komórek tabeli na wiele wierszy
+% Stretching table cells across multiple rows
 \usepackage{multirow}
 
-% Precyzyjne obliczenia szerokości/wysokości dowolnego fragmentu wygenerowanego przez LaTeX
+% Precise calculation of the width/height of any fragment generated by LaTeX
 \usepackage{calc}
 
 % ***************************************************************************************************
-% Matematyczne skróty
+% Mathematical abbreviations
 % ***************************************************************************************************
 
-% Skrócony symbol liczb rzeczywistych
+% Short symbol for real numbers
 \newcommand{\RR}{\mathbb{R}}
 
-% Skrócony symbol liczb naturalnych
+% Short symbol for natural numbers
 \newcommand{\NN}{\mathbb{N}}
 
-% Skrócony symbol liczb wymiernych
+% Short symbol for rational numbers
 \newcommand{\QQ}{\mathbb{Q}}
 
-% Skrócony symbol liczb całkowitych
+% Short symbol for integers
 \newcommand{\ZZ}{\mathbb{Z}}
 
-% Skrócony symbol logicznej implikacji
+% Short symbol for logical implication
 \newcommand{\IMP}{\rightarrow}
 
-% Skrócony symbol  logicznej równoważności
+% Short symbol for logical equivalence
 \newcommand{\IFF}{\leftrightarrow}
 
 % ***************************************************************************************************
-% Środowiska
+% Environments
 % ***************************************************************************************************
 
-% Środowisko do twierdzeń
-\newtheorem{theorem}{Twierdzenie}[chapter]
+% Environment for theorems
+\newtheorem{theorem}{Theorem}[chapter]
 
-% Środowisko do lematów
-\newtheorem{lemma}{Lemat}[chapter]
+% Environment for lemmas
+\newtheorem{lemma}{Lemma}[chapter]
 
-% Środowisko do przykładów
-\newtheorem{example}{Przykład}[chapter]
+% Environment for examples
+\newtheorem{example}{Example}[chapter]
 
-% Środowisko do wniosków
-\newtheorem{corollary}{Wniosek}[chapter]
+% Environment for corollaries
+\newtheorem{corollary}{Corollary}[chapter]
 
-% Środowisko do definicji
-\newtheorem{definition}{Definicja}[chapter]
+% Environment for definitions
+\newtheorem{definition}{Definition}[chapter]
 
-% Środowisko do dowodów
+% Environment for proofs
 \newenvironment{proof}{
-	\par\noindent \textbf{Dowód.}
+	\par\noindent \textbf{Proof.}
 }{
 \begin{flushright}
 	\vspace*{-6mm}\mbox{$\blacklozenge$}
 \end{flushright}
 }
 
-% Środowisko do uwag
+% Environment for remarks
 \newenvironment{remark}{
-	\bigskip \par\noindent \small \textbf{Uwaga.}
+	\bigskip \par\noindent \small \textbf{Remark.}
 }{
 \begin{small}
 	\vspace*{4mm}
 \end{small}
 }
 
-% dodatkowe pomagające, oczywiście nie wszystskie są wymagane
+% additional helpers; of course not all are required
 \usepackage{psfrag}
 \usepackage{amsfonts}
 \usepackage{supertabular}
@@ -529,7 +529,7 @@
 \usepackage{tabto}
 \usepackage{wrapfig}
 
-% formatowanie pierwszych stron rozdziałów - pomagające
+% formatting of the first pages of chapters - helpers
 \newcommand{\resetformatting}{ 
 \fancypagestyle{plain}{
     	\fancyhf{}%
@@ -549,7 +549,7 @@
 \thispagestyle{chapterBeginStyle}}
 
 %***************************************************************************************************
-% Wlasne komendy
+% Custom commands
 % ***************************************************************************************************
 \newcommand{\kgMargin} [1]{\marginpar{\color{magenta} {\bf PP}: \small{#1}}}
 \newcommand{\kg}[1]{{\color{magenta} {\bf PP}: \small{#1}}}
@@ -557,9 +557,9 @@
 \newcommand{\rrMargin} [1]{\marginpar{\color{magenta} {\bf RR}: \small{#1}}}
 \newcommand{\rr}[1]{{\color{blue} {\bf RR}: \small{#1}}}
 
-% Dodac reszte komentarzy od reszty osob - niech kazdy wybierze sobie kolor
+% Add the remaining comments from the other people - let everyone choose a colour
 
-% Numerowanie linii w drafcie
+% Line numbering in the draft
 % \usepackage{lineno}
 % \renewcommand\linenumberfont{\normalfont\scriptsize}
 % \linenumbers

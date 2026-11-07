@@ -1,0 +1,318 @@
+\chapter{Empathization}
+
+\section{Introduction to the empathization phase}
+
+Empathization is the first and key stage of the design process based on the
+Design Thinking methodology. Its goal is to gain a deep understanding of the needs, expectations, concerns and
+motivations of all people involved in or affected by the planned implementation of the IT
+system. In the case of the EMR system project for Szpital im. Bajgla in Wrocław,
+it is particularly important to take into account a wide spectrum of stakeholders, from the facility's
+management, through medical and technical staff, to patients and potential
+external users.
+
+Four
+main stakeholder groups were identified: key players, users (divided into primary and potential users), dormant stakeholders and observers. For each group,
+a persona profile was developed together with the resulting design implications.
+
+\section{Stakeholder map}
+
+For the purposes of the project, stakeholders were grouped according to their role and influence on the system implementation:
+
+\begin{itemize}
+    \item \textbf{Key players} - people with high influence on the project and a high level of involvement: hospital director, hospital board, IT staff member
+    \item \textbf{Primary users} - people directly using the system in their daily work, i.e., hospital employees, among others: internal medicine physician, medical student, ward nurse.
+    \item \textbf{Potential users} - people using the system occasionally or to a limited extent - patients. A malicious user was also distinguished, against whom the system must be protected.
+    \item \textbf{Dormant} - stakeholders with potentially high influence but currently not involved: technology startup CEO, media, Ministry of Health.
+    \item \textbf{Observers} - a group of external stakeholders with minimal influence on the project: public administration, auditors, foundations, priest, police
+\end{itemize}
+
+\section{Persona analysis}
+
+\subsection{Hospital director}
+
+\textbf{Profile:} Male, 63 years old. An experienced administrator with many years of service in healthcare, married, an active grandfather.
+
+\textbf{Character traits:} Friendly, warm, caring, modern and optimistic. Open to change, as long as it serves patients and employees.
+
+\textbf{Attitude towards the project:} Positive. The director is the initiator and main sponsor of the project, recognizes the need for digitalization and wants to improve the facility's operating standards.
+
+\textbf{Expectations of the system:}
+\begin{itemize}
+    \item Compliance with applicable legal standards and data protection regulations,
+    \item Real improvement in the daily work of doctors and staff,
+    \item Intuitiveness for all age groups of users,
+    \item A high level of medical data security.
+\end{itemize}
+
+\textbf{Concerns:}
+\begin{itemize}
+    \item The possibility of artificial technical problems,
+    \item opposition from some doctors to the implementation,
+    \item the risk of patient data leakage,
+\end{itemize}
+
+\textbf{Project implications:} The system must be presentable as a real benefit for staff, not an additional burden. It is crucial to prepare a reliable presentation of the project's value for sceptical stakeholders. The director should be included in the communication campaign preceding the implementation.
+
+\subsection{Hospital board}
+
+\textbf{Profile:} The hospital board is a collegial body composed of several people holding top-level managerial functions. In a typical structure of a large public hospital in Poland, it includes: deputy director for medical affairs (a doctor with many years of clinical and administrative experience), deputy director for financial affairs (an economist or lawyer with experience in public finance), chief accountant and heads of key organizational units. The board works closely with the director, but as a collegial body it makes strategic decisions, including approval of the project budget.
+From a demographic perspective, these are people aged 48-58, with long service in the public healthcare sector. Most of them built their careers at a time when hospital digitalization was still a thing of the future, which shapes their cautious, analytical approach to technology investments.
+
+\textbf{Attitude towards the project:} Conditionally positive. Board members understand the inevitability of digitalization. However, they know examples of new IT systems implemented in other facilities: delayed, over budget, causing staff resistance. This experience breeds instinctive caution.
+
+\textbf{Expectations of the system:}
+\begin{itemize}
+    \item legal safety - the system must be fully compliant with GDPR, the Act on Patients' Rights and the Patient Ombudsman,
+    \item operational continuity - the hospital operates 24 hours a day, 7 days a week and cannot afford downtime of a critical system.
+    \item cost control - the board expects a detailed cost estimate, a clear definition of maintenance costs over a perspective of at least 5 years and the definition of conditions for possible withdrawal from the contract with the supplier.
+    \item measurable results - the board will monitor whether the system actually shortens staff administrative work time.
+\end{itemize}
+
+\textbf{Concerns:}
+\begin{itemize}
+    \item the risk of exceeding the budget and schedule,
+    \item staff resistance,
+    \item possible patient claims in the event of a system error affecting the treatment process.
+\end{itemize}
+
+\textbf{Project implications:} The board will assess the project mainly through the prism of costs, legal compliance and impact on the facility's operational efficiency. Preparing a detailed cost estimate, schedule and return on investment analysis will be crucial. The board will require formal documentation of compliance with GDPR and EU eHealth directives.
+
+\subsection{IT staff member}
+
+\textbf{Profile:} Male, 48 years old. He knows the director well, which makes him a key intermediary. His private life is complicated: married, simultaneously divorced, a son from a previous relationship. Motto: \emph{``If it can't be done - don't touch it''}.
+
+\textbf{Character traits:} Sceptical, cautious, pedantic, realistic. He values stability over innovation.
+
+\textbf{Attitude towards the project:} Negative. He expects a significant increase in workload, additional reports from staff and responsibility for a system he did not design himself.
+
+\textbf{Expectations of the system:}
+\begin{itemize}
+    \item Full stability and reliability,
+    \item Clear and complete technical documentation,
+    \item Real technical support from the supplier.
+\end{itemize}
+
+
+\textbf{Concerns:}
+\begin{itemize}
+    \item An avalanche of questions from staff,
+    \item lack of training,
+    \item an unfinished system at the time of implementation,
+    \item errors that are difficult to diagnose.
+\end{itemize}
+
+\textbf{Project implications:} The IT staff member must be actively involved in the project already at the architecture design stage. It is essential to provide him with detailed technical documentation, clear problem escalation procedures and guarantees of support from the supplier. His acceptance is a condition for successful implementation due to his close relationship with the management.
+
+\subsection{Senior internal medicine physician}
+
+\textbf{Profile:} Male, 60 years old. An experienced specialist with an established professional position. Wife an accountant, two adult sons. He reads the printed press and has a tendency towards critical assessment of new trends. Motto: \emph{``Everything must add up''}.
+
+\textbf{Character traits:} Stubborn, sceptical about technology, convinced of his own rightness, grounded in many years of clinical experience.
+
+\textbf{Attitude towards the project:} Negative. He considers the project a hindrance to work rather than an improvement.
+
+\textbf{Expectations of the system:}
+\begin{itemize}
+    \item The system must work faster than traditional handwritten notes,
+    \item Data must complete itself automatically wherever possible,
+    \item The ability to print any document at any time.
+\end{itemize}
+
+\textbf{Concerns:}
+\begin{itemize}
+    \item Data loss in the event of a system failure
+    \item access of unauthorized persons to his patients
+    \item being pushed out of his role by younger, more technologically proficient doctors,
+    \item the need for lengthy clicking instead of treating.
+\end{itemize}
+
+\textbf{Project implications:} The interface must be maximally simplified, with a maximum of three clicks to any information. It is necessary to provide preview and printing of every document. The system must not slow down the doctor during rounds. Individual training for this age group before implementation is recommended.
+
+\subsection{Medical student}
+
+\textbf{Profile:} Female, 25 years old. Lives with her partner in a rented apartment.
+
+\textbf{Character traits:} Persistent, ambitious, organized, empathetic. She moves efficiently in digital environments.
+
+\textbf{Attitude towards the project:} Positive. She sees the system as an opportunity to learn and better understand clinical processes.
+
+\textbf{Expectations of the system:}
+\begin{itemize}
+    \item An intuitive and modern interface,
+    \item The ability to access patient data and observe the decisions of the attending physician,
+    \item A wide range of available information.
+\end{itemize}
+
+\textbf{Concerns:} A system too complicated for her level of permissions, the need to ask staff for help with every operation.
+
+\textbf{Project implications:} A dedicated access level should be designed for interns and students, enabling observation without the possibility of modifying data. The interface should contain contextual hints and descriptions supporting system learning.
+
+\subsection{Ward nurse}
+
+\textbf{Profile:} Female, 38 years old. Married, two school-age children. Physically active, a runner and cyclist. She uses a smartphone and social media every day. Motto: \emph{``The patient matters, not the paperwork''}.
+
+\textbf{Character traits:} Organized, specific, efficiency-oriented. She can be impatient with unnecessary procedures. An informal leader; her attitude influences the attitudes of other nurses.
+
+\textbf{Attitude towards the project:} Ambivalent. She understands the need for digitalization but fears the parallel operation of two systems during the transition period. If the system proves intuitive, she will become its ambassador.
+
+\textbf{Expectations of the system:}
+\begin{itemize}
+    \item Quick data entry with a minimum number of clicks,
+    \item A clear view of orders and tasks for each patient,
+    \item Push notifications about urgent orders,
+    \item Operation in offline mode or with a weak Wi-Fi signal,
+    \item Integration with existing documentation.
+\end{itemize}
+
+\textbf{Concerns:}
+\begin{itemize}
+    \item Time spent entering data at the expense of patient care
+    \item Failures during shifts,
+    \item Training conducted at the last minute,
+    \item Responsibility for system errors.
+\end{itemize}
+\textbf{Project implications:} The system must have an offline mode with synchronization after connection is restored. When designing the mobile interface, emphasis should be placed on the ergonomics of tablet use. Notifications about orders are a critical requirement. The nurse should be involved as a tester in the pilot phase, because her positive assessment will facilitate implementation throughout the nursing team.
+
+\subsection{Elderly patient}
+
+\textbf{Profile:} Male, 72 years old. Widower, two adult children living in another city. He spends time at his allotment, watches television, talks with neighbours.
+
+\textbf{Character traits:} Calm, patient, but easily frustrated when something does not work intuitively. Distrustful of new technologies. He needs clear, simple instructions.
+
+\textbf{Attitude towards the project:} Sceptical - he does not understand why all this is needed, since everything worked without computers.
+
+\textbf{Expectations of the system:}
+\begin{itemize}
+    \item A very simple interface with large font and high contrast,
+    \item The ability to view test results without leaving home,
+    \item SMS notifications about new results,
+    \item The ability to print results.
+\end{itemize}
+
+\textbf{Concerns:}
+\begin{itemize}
+    \item Inability to operate the system independently,
+    \item Fear of leakage of personal and medical data,
+    \item Unintelligibility of results without a doctor's commentary,
+    \item Lack of on-site technical support.
+\end{itemize}
+
+\textbf{Project implications:} The patient portal must meet digital accessibility requirements, i.e., large buttons, legible typography (min. 16 pt), high contrast, simple language. SMS notifications must be enabled by default. Test results should include an interpretation in non-specialist language or a referral to a doctor.
+\subsection{Middle-aged patient}
+
+\textbf{Profile:} Female, 35 years old. Married, two preschool children. Works as a
+marketing specialist in a hybrid mode. She actively uses a smartphone,
+social media and banking and shopping applications every day. Motto:
+\emph{``I want to get this done quickly and get back to my business.''}
+
+\textbf{Character traits:} Pragmatic, efficiency-oriented, impatient with
+unintuitive solutions. Accustomed to the high UX standard of commercial applications such as a banking app or e-commerce. Independent and rarely
+asks for technical help, as long as the interface works as expected.
+
+\textbf{Attitude towards the project:} Positive and practical. She is not interested in the technology itself,
+but in a specific saving of time. The absence of the need to take leave to collect
+results, avoiding queues and the ability to check documentation between work meetings are also important.
+
+\textbf{Expectations of the system:}
+\begin{itemize}
+    \item Fast and convenient access to test results via a mobile application or website,
+    \item Push or SMS notifications when new results appear,
+    \item A view of treatment history and medical orders in one place,
+    \item The ability to download documents in PDF format for a second opinion or insurer,
+    \item A clear, modern interface that works equally efficiently on a phone and a computer.
+\end{itemize}
+
+\textbf{Concerns:}
+\begin{itemize}
+    \item Leakage of medical data or its use by insurance companies and employers,
+    \item Lack of responsiveness of the interface on mobile devices,
+    \item The need to register through many steps and remember another password,
+    \item The risk that results will be visible in the system with a delay and it will still be necessary to call the hospital.
+\end{itemize}
+
+\textbf{Project implications:} The patient portal must be fully responsive and optimized
+for mobile devices. Registration and login should enable authentication
+through Profil Zaufany or the mObywatel application, which eliminates the need to remember
+additional access credentials. Test results must be published in the system
+automatically, immediately after approval by the laboratory. Documents should
+be available for download in PDF format. The privacy policy must be formulated
+in clear, non-specialist language, and the purpose of processing each data category should be clearly described at the first login.
+
+\subsection{Malicious user - funeral services representative}
+
+\textbf{Profile:} Male, 45 years old. Divorced, two children. He often spends time behind the wheel, sociable, sometimes consumes alcohol. He runs a business. Motto: \emph{``First come, first served''}.
+
+\textbf{Character traits:} Open, ambitious, clever, entrepreneurial. He can establish relationships with staff.
+
+\textbf{Attitude towards the project:} Optimistic - he counts on facilitating customer acquisition thanks to weak system security.
+
+\textbf{Expectations (unauthorized):}
+\begin{itemize}
+    \item Easy access to patient data,
+    \item The possibility of viewing documentation by bribing staff or exploiting system vulnerabilities.
+\end{itemize}
+
+\textbf{Concerns:} Strong authentication, advanced access control mechanisms, login auditing.
+
+\textbf{Project implications:} Medical data belongs to the category of particularly sensitive data within the meaning of GDPR. The system must implement: two-factor authentication (2FA), a full event and login register, automatic logout after inactivity, and encryption of data both at rest and in transit. Medical staff should be trained in data protection and the principles of not granting access to unauthorized persons.
+
+\subsection{CEO of a small technology startup}
+
+\textbf{Profile:} Female or male, 32 years old. Busy, parents do not know exactly what they do. Motto: \emph{``It will go smoothly''}.
+
+\textbf{Character traits:} Optimistic, endless energy, tendency to ignore details, belief in the scalability of every solution.
+
+\textbf{Role in the project:} Potential investor and technology supplier.
+
+\textbf{Attitude towards the project:} Euphoric - sees an opportunity to change the healthcare market.
+
+\textbf{Expectations:} Rapid implementation, collecting as much data as possible.
+
+\textbf{Concerns:} Bureaucracy, long procedures, legal requirements, GDPR.
+
+\textbf{Project implications:} The scope of processed data and the legal basis for collecting it must be clearly defined. Data minimization (privacy by design) is a GDPR requirement - the system cannot collect data beyond the scope necessary to achieve the medical purpose. In relations with external suppliers, data processing agreements are necessary (Article 28 GDPR).
+
+\subsection{Media}
+
+\textbf{Profile:} A dormant stakeholder with potentially high influence on the public perception of the project.
+
+\textbf{Project implications:} The media may play an important role in the event of a security incident or staff protest. It is recommended to prepare an external communication strategy at the implementation stage and to appoint a project spokesperson.
+
+\subsection{Ministry of Health}
+
+\textbf{Profile:} A regulatory stakeholder with high potential influence.
+
+\textbf{Project implications:} The system must comply with the requirements of P1 (the e-Health Platform) and Polish law on medical documentation (the Act on Patients' Rights, the Regulation of the Minister of Health on the types and scope of medical documentation). The implementation should be consulted with the Centre for e-Health.
+
+\section{Synthesis of conclusions - defined functional requirements}
+
+Based on the persona analysis, the following key functional and non-functional requirements were identified that must be taken into account in the EMR system design:
+
+\paragraph{Requirements resulting from user analysis:}
+\begin{itemize}
+    \item \textbf{Role-based access} - each user group (doctor, nurse, laboratory technician, intern, patient, administrator) receives a separate set of permissions adapted to the scope of duties.
+    \item \textbf{Mobility} - the application must work on tablets and smartphones; departmental staff do not have permanent access to desktop computers.
+    \item \textbf{Offline mode} - due to poor network infrastructure in some departments, the system must support operation without a server connection and synchronize data after network access is restored.
+    \item \textbf{Speed of operations} - any patient information should be available in no more than 3 steps; this is critical for a doctor during rounds and for a nurse during a shift.
+    \item \textbf{Patient portal} - a simple, digitally accessible (WCAG 2.1 AA) interface with the ability to view results, SMS notifications and a print option.
+    \item \textbf{Notifications and alerts} - automatic notification of staff about new test results and urgent orders.
+    \item \textbf{Printing capability} - every document must be available for printing in a standard format.
+\end{itemize}
+
+\paragraph{Requirements resulting from security analysis:}
+\begin{itemize}
+    \item \textbf{Two-factor authentication (2FA)} - mandatory for all medical staff accounts,
+    \item \textbf{Full event register (audit log)} - every login, logout and data change must be recorded with the user identifier and timestamp,
+    \item \textbf{Data encryption} - both at rest (AES-256) and in transit (TLS 1.3),
+    \item \textbf{Automatic logout} - after 5 minutes of inactivity,
+    \item \textbf{Data minimization} - collecting only data necessary to achieve the medical purpose, in accordance with Article 5 GDPR.
+\end{itemize}
+
+\paragraph{Requirements resulting from implementation analysis:}
+\begin{itemize}
+    \item \textbf{Group-differentiated training} - separate training for doctors, nurses, laboratory technicians, administration and students,
+    \item \textbf{Technical documentation} - complete and up-to-date documentation for the IT staff member,
+    \item \textbf{Post-implementation support} - a dedicated helpdesk for at least 3 months from the production launch,
+    \item \textbf{Phased implementation} - a pilot in one department before expanding to the entire facility,
+    \item \textbf{Regulatory compliance} - GDPR, Centre for e-Health requirements, the Act on Patients' Rights.
+\end{itemize}
