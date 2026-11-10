@@ -1,96 +1,218 @@
 \clearpage
 
-\chapter*{Division of work among team members}
-\addcontentsline{toc}{section}{Division of work among team members}
+\chapter*{Project Team and Division of Work}
+\addcontentsline{toc}{section}{Project Team and Division of Work}
+
+\section*{Project Team}
+\addcontentsline{toc}{subsection}{Project Team}
+
+The project team consists of seven members. The work is organised into six thematic
+areas reporting to the Project Manager, each led by a team lead and divided into
+three sections with clearly defined responsibilities. The Project Manager is
+responsible for overall coordination, planning and project control, including the
+supervision of all areas and their leads.
 
 \setlength{\LTleft}{0pt}
 \setlength{\LTright}{0pt}
 
 \renewcommand{\arraystretch}{1.3}
 
-\begin{longtable}{|p{3cm}|p{1.8cm}|p{10.2cm}|}
+\begin{longtable}{|L{2.3cm}|C{1.4cm}|L{2.6cm}|L{2.9cm}|L{2.9cm}|C{0.8cm}|}
+\caption{Project team -- roles, responsibilities, key qualifications and availability}
+\label{tab:project_team} \\
 \hline
 
-\makecell{\textbf{Team}\\\textbf{member}}&
-\makecell{\textbf{Student}\\\textbf{number}}&
-\makecell{\textbf{Scope of work}}
+\rowcolor{gray!20}
+\textbf{Team member} &
+\textbf{Student no.} &
+\textbf{Project role} &
+\textbf{Scope of responsibility} &
+\textbf{Key qualifications} &
+\textbf{FTE} \\
 \hline
 
 \endfirsthead
 
 \hline
 
+\rowcolor{gray!20}
 \textbf{Team member} &
-\textbf{Student number} &
-\textbf{Scope of work} \\
+\textbf{Student no.} &
+\textbf{Project role} &
+\textbf{Scope of responsibility} &
+\textbf{Key qualifications} &
+\textbf{FTE} \\
 \hline
 
 \endhead
 
-
-Pola Polańska &
-276087 &
-\parbox[t]{10cm}{
-Development of the chapter "Problem description and current situation analysis" \\
-Preparation of three EMR system implementation variants \\
-Preparation of organizational implementation assumptions
-}
-\\
+Amanda Mya Mihalaros &
+--- &
+Project Manager &
+Overall coordination, planning and project control\newline
+Supervision of the six areas and their leads\newline
+Consolidation of plans, schedule and reporting\newline
+Communication with the hospital and stakeholders &
+Project planning and control (scope, schedule, risk), Agile and waterfall methods,
+MS Project/Jira, stakeholder communication; English &
+0.50 \\
 \hline
 
-
-Wiktor Szajerka &
-272432 &
-\parbox[t]{10cm}{
-Preparation of the chapter "Empathization" \\
-Development of the stakeholder map \\
-Development of the chapter "User story"
-}
-\\
+Ksenia Li &
+--- &
+Research \& Analysis Lead &
+Market research (Section~1)\newline
+Requirements analysis (Section~2)\newline
+Documentation and reporting (Section~3) &
+Market and comparative analysis, requirements engineering, technical documentation,
+\LaTeX; English &
+0.40 \\
 \hline
 
+David Xu Liu &
+--- &
+IT \& System Development Lead &
+EMR design and development (Section~1)\newline
+Integration and testing (Section~2)\newline
+Technical support (Section~3) &
+System architecture, backend and frontend development, API integration
+(HL7/FHIR), testing, Microsoft Azure; English &
+0.50 \\
+\hline
 
-Kacper Kurp &
+Erika Andreea Gumaniuc &
+--- &
+Finance \& Project Support Lead &
+Budget and cost control (Section~1)\newline
+Procurement and resources (Section~2)\newline
+Planning and monitoring (Section~3) &
+Budgeting, CAPEX/OPEX analysis, cost control, procurement, financial modelling
+(Excel); English &
+0.35 \\
+\hline
+
+Miguel Angel Martin Fraile &
+--- &
+Data Security \& Compliance Lead &
+Data privacy (Section~1)\newline
+Legal compliance (Section~2)\newline
+Risk management (Section~3) &
+GDPR and data privacy, security architecture, legal compliance, risk assessment
+(DPIA), ISO/IEC~27001; English &
+0.35 \\
+\hline
+
+Kacper Piotr Kurp &
 268555 &
-\parbox[t]{10cm}{
-Development of the chapter "Description of system functionalities" \\
-Preparation of system actors and their permissions \\
-Preparation of the method of user interaction with the system
-}
-\\
+Operations \& User Support Lead &
+Clinical workflows (Section~1)\newline
+Staff training (Section~2)\newline
+User support (Section~3) &
+Clinical process analysis, functional requirements, user training, helpdesk
+organisation; English &
+0.40 \\
 \hline
 
-
-Piotr Bonar &
-272720 &
-\parbox[t]{10cm}{
-Preparation of the EMR system implementation cost estimate \\
-Preparation of CAPEX and OPEX analysis \\
-Development of financial scenarios and economic recommendation
-}
-\\
+Francisco Patino Guillen &
+--- &
+Quality \& Continuous Improvement Lead &
+Quality assurance (Section~1)\newline
+Process improvement (Section~2)\newline
+Performance monitoring (Section~3) &
+Quality assurance, process improvement, KPI and performance monitoring, testing
+and review; English &
+0.35 \\
 \hline
 
+\end{longtable}
 
-Roch Szewczyk &
-263828 &
-\parbox[t]{10cm}{
-Preparation of user interface mock-ups \\
-Development of the visual concept of system operation \\
-Support for the interface design process
-}
-\\
+The team composition reflects the scope of the project and covers all competence
+areas required by the report: research and requirements analysis, system
+development and integration, finance and project support, security and compliance,
+operations and user support, and quality and continuous improvement, all
+coordinated by the Project Manager. The assignments follow the actual contribution
+to the report chapters so that responsibility for each area is unambiguous.
+
+Two competence gaps are identified and consciously mitigated. First, the team has
+no practising lawyer or certified ISO/IEC~27001 lead auditor; legal and
+certification aspects are therefore handled in cooperation with external
+specialists and certification bodies. Second, the team works part-time, so the
+availability expressed in FTE is an assumption adopted for planning purposes and
+must be confirmed by each member before the schedule is baselined.
+
+\textbf{Note -- vendor team versus project team.} Table~\ref{tab:capex_zespol} in
+the cost estimate (Category~A) lists the roles of the assumed implementation
+contractor (project manager, architect, developers, DevOps, QA, etc.). Those roles
+are pricing assumptions of the vendor used to build the CAPEX estimate; they do
+not describe the composition of the student project team presented in this
+section. The two layers must not be confused.
+
+\section*{Division of Work Among Team Members}
+\addcontentsline{toc}{subsection}{Division of Work Among Team Members}
+
+The following table maps the report chapters and project areas to the roles and
+teams responsible for them.
+
+\begin{longtable}{|L{6.6cm}|L{8.4cm}|}
+\caption{Mapping of report chapters and project areas to responsible roles}
+\label{tab:division_of_work} \\
 \hline
 
+\rowcolor{gray!20}
+\textbf{Report chapter / project area} &
+\textbf{Responsible role / team} \\
+\hline
 
-Robert Rubaszek &
-272372 &
-\parbox[t]{10cm}{
-Preparation of the project summary presentation \\
-Development of materials used during the presentation \\
-Presentation of project results
-}
-\\
+\endfirsthead
+
+\hline
+
+\rowcolor{gray!20}
+\textbf{Report chapter / project area} &
+\textbf{Responsible role / team} \\
+\hline
+
+\endhead
+
+Introduction (problem definition, market and legal context) &
+Research \& Analysis; Data Security \& Compliance (regulatory and GDPR context) \\
+\hline
+
+Empathization (stakeholder analysis, personas) &
+Operations \& User Support; Research \& Analysis \\
+\hline
+
+User stories &
+Research \& Analysis; Operations \& User Support \\
+\hline
+
+Project idea and solution variants &
+Research \& Analysis; Finance \& Project Support (cost comparison);
+Data Security \& Compliance (compliance) \\
+\hline
+
+Implementation plan &
+IT \& System Development; Operations \& User Support \\
+\hline
+
+Cost estimate (CAPEX, OPEX, TCO) &
+Finance \& Project Support \\
+\hline
+
+System functionalities (actors, permissions, UX) &
+IT \& System Development; Operations \& User Support \\
+\hline
+
+Security, GDPR and DPIA &
+Data Security \& Compliance \\
+\hline
+
+Quality assurance, review and continuous improvement &
+Quality \& Continuous Improvement \\
+\hline
+
+Presentation, reporting and project control &
+Project Manager \\
 \hline
 
 \end{longtable}

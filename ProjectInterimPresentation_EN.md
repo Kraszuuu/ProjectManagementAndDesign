@@ -8,15 +8,15 @@ This document collects notes on the 7 items that need to be completed before the
 | - | ---------------------------------------------------------------- | ----------------------------------- |
 | 1 | Project Proposal (problem, variants, background, benchmark, BMC) | PARTIAL                             |
 | 2 | Stakeholder Analysis                                             | CLOSED                              |
-| 3 | Project Organizational Structure                                 | CLOSED (new names are correct)      |
-| 4 | Project Team                                                     | PARTIAL                             |
+| 3 | Project Organizational Structure                                 | CLOSED                              |
+| 4 | Project Team                                                     | CLOSED                              |
 | 5 | Draft WBS                                                        | MISSING                             |
 | 6 | Action Plan                                                      | PARTIAL                             |
 | 7 | Responsibility Chart (RACI)                                      | MISSING                             |
 | 8 | Cost Baseline and Project Budget                                 | BUDGET READY, COST BASELINE MISSING |
 | 9 | Financial Feasibility (ROI, NPV)                                 | PARTIAL                             |
 
-The notes below cover items **1, 4, 5, 6, 7, 8, 9** (7 items). Item 8 is included because the budget itself exists, but a formal, approved, time-phased cost baseline is missing.
+The notes below cover items **1, 4, 5, 6, 7, 8, 9** (7 items). Item 8 is included because the budget itself exists, but a formal, approved, time-phased cost baseline is missing. Item 4 has since been completed and is kept below for the record.
 
 ---
 
@@ -59,29 +59,38 @@ The notes below cover items **1, 4, 5, 6, 7, 8, 9** (7 items). Item 8 is include
 
 ## 4. Project Team
 
-**Status:** partial.
+**Status:** closed (team updated; section rewritten).
 
 **What already exists:**
 
-- Team composition and student numbers: `ICT_Project/main.tex:11-13`.
-- Division of work by report chapter: `ICT_Project/Chapters/work_table.tex:31-94`.
+- Composition of the 7-member team: `ICT_Project/LaTeX/ENG/main.tex:11`.
+- Organisational structure — Project Manager and six thematic areas, each with three sections: `Images/Employment Structure.jpeg`.
+- Roles, scope of responsibility, key qualifications and availability (FTE) per member: `ICT_Project/LaTeX/ENG/Chapters/work_table.tex` (table "Project team -- roles, responsibilities, key qualifications and availability").
+- Justification of team composition, identified competence gaps and a note separating the student team from the vendor team: `work_table.tex`.
+- Clarification in the cost estimate that CAPEX Category A describes the contractor's team, not the student team: `ICT_Project/LaTeX/ENG/Chapters/cost-estimate.tex:288-291`.
+- Mapping of report chapters and project areas to responsible roles/teams: `work_table.tex` (table "Mapping of report chapters and project areas to responsible roles").
 
-**Gaps:**
+**Gaps identified (now resolved):**
 
-1. **No project positions.** There is no assignment such as: project manager, deputy, business analyst, architect, backend/frontend/mobile, QA, UX/UI, security and compliance, financial controller, communication/presentation.
-2. **No qualifications.** Education, technical skills, experience, certifications, tool and language proficiency are not described.
-3. **No justification for team selection.** It is not explained why this team can deliver the project and what competency gaps it has.
-4. **Confusing roles from the cost estimate.** `ICT_Project/Chapters/cost-estimate.tex:301-322` lists roles such as "Project Manager", "Architect", "DevOps", etc., but these are roles of a fictional vendor in the estimate, not roles of the student team members. Without separating these layers, the presentation is unclear.
-5. **No availability information.** Neither the workload dimension (FTE) nor individual availability is given.
+1. **No project positions** — each member now holds a role: Project Manager or Lead of one thematic area (Research & Analysis, IT & System Development, Finance & Project Support, Data Security & Compliance, Operations & User Support, Quality & Continuous Improvement).
+2. **No qualifications** — key qualifications were added per member (methods, tools, domain and language competences).
+3. **No justification for team selection** — a paragraph justifies the composition and names two mitigated competence gaps (no lawyer / ISO 27001 lead auditor; part-time availability).
+4. **Confusing roles from the cost estimate** — the Category A table is now explicitly labelled as the vendor team and cross-referenced from the Project Team section.
+5. **No availability information** — availability is given in FTE for every member.
 
-**What to add:**
+**What was added:**
 
-- A table: **member | student number | project role | scope of responsibility | qualifications | availability (FTE)**.
-- A short paragraph justifying the team composition and role assignment.
-- A clear note: the roles in the cost estimate (CAPEX category A) are vendor-side assumptions, not the project team composition.
-- Mapping of project roles to chapters/areas: PM, requirements analysis, architecture, development, UX, QA, security, finance, presentation.
+- Table: **member | student number | project role | scope of responsibility | key qualifications | availability (FTE)**.
+- Paragraph justifying the team composition and role assignment.
+- Clear note that the roles in the cost estimate (CAPEX Category A) are vendor-side assumptions, not the project team composition.
+- Mapping of report chapters and project areas to roles/teams.
 
-**Completion criterion:** a "Project Team" slide with roles and qualifications for each member and a consistent report subsection.
+**Open points:**
+
+- Student numbers of the international members are marked `---` in the table and must be completed.
+- FTE values are planning assumptions and must be confirmed by each member before the schedule is baselined.
+
+**Completion criterion:** met — a complete Project Team section with roles, responsibilities, qualifications and availability for each member, consistent with the rest of the report.
 
 ---
 
@@ -293,5 +302,5 @@ The notes below cover items **1, 4, 5, 6, 7, 8, 9** (7 items). Item 8 is include
 3. Responsibility Chart RACI (item 7) — based on the WBS.
 4. Cost Baseline (item 8) — distributing the budget over time.
 5. Financial Feasibility (item 9) — benefits and indicators.
-6. Project Team (item 4) — roles and qualifications.
+6. ~~Project Team (item 4) — roles and qualifications.~~ Completed.
 7. Project Proposal (item 1) — feature benchmark and BMC.
